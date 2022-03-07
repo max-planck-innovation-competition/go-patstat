@@ -9,7 +9,7 @@ CREATE TABLE tls204_appln_prior (
 */
 
 type Tls204ApplnPrior struct {
-	ApplnID         int   `json:"applnId" gorm:"column:appln_id;type:integer;default:0;not null"`
+	ApplnID         int   `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
 	PriorApplnID    int   `json:"priorApplnId" gorm:"column:prior_appln_id;type:integer;default:0;not null"`
 	PriorApplnSeqNr int16 `json:"priorApplnSeqNr" gorm:"column:prior_appln_seq_nr;type:smallint;default:0;not null"`
 }

@@ -10,7 +10,7 @@ CREATE TABLE tls202_appln_title (
 
 // Tls202ApplnTitle is the structure for the application title
 type Tls202ApplnTitle struct {
-	ApplnId      int    `json:"applnId" gorm:"column:appln_id;type:integer;default:0;not null"`
+	ApplnId      int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
 	ApplnTitleLg string `json:"applnTitleLg" gorm:"column:appln_title_lg;type:char(2);default:'';not null"`
 	ApplnTitle   string `json:"applnTitle" gorm:"column:appln_title;type:text;not null"`
 }

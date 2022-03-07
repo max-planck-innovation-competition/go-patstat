@@ -49,13 +49,14 @@ CREATE TABLE tls204_appln_prior (
     prior_appln_id integer DEFAULT 0 NOT NULL,
     prior_appln_seq_nr smallint DEFAULT 0 NOT NULL
 );
-*/
- */
+
+
 
 CREATE TABLE tls205_tech_rel (
     appln_id integer DEFAULT 0 NOT NULL,
     tech_rel_appln_id integer DEFAULT 0 NOT NULL
 );
+
 
 CREATE TABLE tls206_person (
     person_id integer DEFAULT 0 NOT NULL,
@@ -76,12 +77,15 @@ CREATE TABLE tls206_person (
     han_harmonized integer DEFAULT 0 NOT NULL
 );
 
+
 CREATE TABLE tls207_pers_appln (
     person_id integer DEFAULT 0 NOT NULL,
     appln_id integer DEFAULT 0 NOT NULL,
     applt_seq_nr smallint DEFAULT 0 NOT NULL,
     invt_seq_nr smallint DEFAULT 0 NOT NULL
 );
+
+
 
 CREATE TABLE tls209_appln_ipc (
     appln_id integer DEFAULT 0 NOT NULL,
@@ -92,6 +96,8 @@ CREATE TABLE tls209_appln_ipc (
     ipc_position char(1) DEFAULT '' NOT NULL,
     ipc_gener_auth char(2) DEFAULT '' NOT NULL
 );
+
+ */
 
 CREATE TABLE tls210_appln_n_cls (
     appln_id integer DEFAULT 0 NOT NULL,

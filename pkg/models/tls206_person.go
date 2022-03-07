@@ -23,7 +23,7 @@ CREATE TABLE tls206_person (
 */
 
 type Tls206Person struct {
-	PersonID         int    `json:"personId" gorm:"column:person_id;type:integer;default:0;not null"`
+	PersonID         int    `json:"personId" gorm:"primaryKey;column:person_id;type:integer;default:0;not null"`
 	PersonName       string `json:"personName" gorm:"column:person_name;type:text;default:'';not null"`
 	PersonNameOrigLg string `json:"personNameOrigLg" gorm:"column:person_name_orig_lg;type:varchar(500);default:'';not null"`
 	PersonAddress    string `json:"personAddress" gorm:"column:person_address;type:text;default:'';not null"`
