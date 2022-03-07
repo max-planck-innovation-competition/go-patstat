@@ -1,4 +1,3 @@
-/*
 CREATE TABLE tls201_appln (
     appln_id integer DEFAULT 0 NOT NULL,
     appln_auth char(2) DEFAULT '' NOT NULL,
@@ -51,7 +50,6 @@ CREATE TABLE tls204_appln_prior (
 );
 
 
-
 CREATE TABLE tls205_tech_rel (
     appln_id integer DEFAULT 0 NOT NULL,
     tech_rel_appln_id integer DEFAULT 0 NOT NULL
@@ -86,7 +84,6 @@ CREATE TABLE tls207_pers_appln (
 );
 
 
-
 CREATE TABLE tls209_appln_ipc (
     appln_id integer DEFAULT 0 NOT NULL,
     ipc_class_symbol varchar(15) DEFAULT '' NOT NULL,
@@ -97,12 +94,12 @@ CREATE TABLE tls209_appln_ipc (
     ipc_gener_auth char(2) DEFAULT '' NOT NULL
 );
 
- */
 
 CREATE TABLE tls210_appln_n_cls (
     appln_id integer DEFAULT 0 NOT NULL,
     nat_class_symbol varchar(15) DEFAULT '' NOT NULL
 );
+
 
 CREATE TABLE tls211_pat_publn (
     pat_publn_id integer DEFAULT 0 NOT NULL,
@@ -117,6 +114,7 @@ CREATE TABLE tls211_pat_publn (
     publn_claims integer DEFAULT 0 NOT NULL
 );
 
+
 CREATE TABLE tls212_citation (
     pat_publn_id integer DEFAULT 0 NOT NULL,
     citn_replenished integer DEFAULT 0 NOT NULL,
@@ -129,6 +127,7 @@ CREATE TABLE tls212_citation (
     npl_citn_seq_nr smallint DEFAULT 0 NOT NULL,
     citn_gener_auth char(2) DEFAULT '' NOT NULL
 );
+
 
 CREATE TABLE tls214_npl_publn (
     npl_publn_id varchar(32) DEFAULT '0' NOT NULL,
@@ -155,6 +154,7 @@ CREATE TABLE tls214_npl_publn (
     online_search_date varchar(8) DEFAULT '' NOT NULL
 );
 
+
 CREATE TABLE tls215_citn_categ (
     pat_publn_id integer DEFAULT 0 NOT NULL,
     citn_replenished integer DEFAULT 0 NOT NULL,
@@ -163,11 +163,13 @@ CREATE TABLE tls215_citn_categ (
     relevant_claim smallint DEFAULT 0 NOT NULL
 );
 
+
 CREATE TABLE tls216_appln_contn (
     appln_id integer DEFAULT 0 NOT NULL,
     parent_appln_id integer DEFAULT 0 NOT NULL,
     contn_type char(3) DEFAULT '' NOT NULL
 );
+
 
 CREATE TABLE tls222_appln_jp_class (
     appln_id integer DEFAULT 0 NOT NULL,
@@ -175,15 +177,18 @@ CREATE TABLE tls222_appln_jp_class (
     jp_class_symbol varchar(50) DEFAULT '' NOT NULL
 );
 
+
 CREATE TABLE tls223_appln_docus (
     appln_id integer DEFAULT 0 NOT NULL,
     docus_class_symbol varchar(50) DEFAULT '' NOT NULL
 );
 
+
 CREATE TABLE tls224_appln_cpc (
     appln_id integer DEFAULT 0 NOT NULL,
     cpc_class_symbol varchar(19) DEFAULT '' NOT NULL
 );
+
 
 CREATE TABLE tls225_docdb_fam_cpc (
     docdb_family_id integer DEFAULT 0 NOT NULL,
@@ -194,8 +199,9 @@ CREATE TABLE tls225_docdb_fam_cpc (
     cpc_value char(1) DEFAULT '' NOT NULL,
     cpc_action_date date DEFAULT '9999-12-31' NOT NULL,
     cpc_status char(1) DEFAULT '' NOT NULL,
-    cpc data_source char(1) DEFAULT '' NOT NULL
+    cpc_data_source char(1) DEFAULT '' NOT NULL
 );
+
 
 CREATE TABLE tls226_person_orig (
     person_orig_id integer DEFAULT 0 NOT NULL,
@@ -230,22 +236,26 @@ CREATE TABLE tls227_pers_publn (
     invt_seq_nr integer DEFAULT 0 NOT NULL
 );
 
+
 CREATE TABLE tls228_docdb_fam_citn (
     docdb_family_id integer DEFAULT 0 NOT NULL,
     cited_docdb_family_id integer DEFAULT 0 NOT NULL
 );
 
+
 CREATE TABLE tls229_appln_nace2 (
     appln_id integer DEFAULT 0 NOT NULL,
     nace2_code varchar(5) DEFAULT '' NOT NULL,
-    weight numeric DEFAULT 1 NOT NULL
+    weight integer DEFAULT 1 NOT NULL
 );
+
 
 CREATE TABLE tls230_appln_techn_field (
     appln_id integer DEFAULT 0 NOT NULL,
     techn_field_nr smallint DEFAULT 0 NOT NULL,
-    weight numeric DEFAULT 1 NOT NULL
+    weight integer DEFAULT 1 NOT NULL
 );
+
 
 CREATE TABLE tls231_inpadoc_legal_event (
     event_id integer DEFAULT 0 NOT NULL,
@@ -288,6 +298,7 @@ CREATE TABLE tls231_inpadoc_legal_event (
     class_symbol varchar(50) DEFAULT ''
 );
 
+
 CREATE TABLE tls801_country (
     ctry_code char(2) DEFAULT '' NOT NULL,
     iso_alph3 varchar(3) DEFAULT '' NOT NULL,
@@ -311,12 +322,14 @@ CREATE TABLE tls803_legal_event_code (
     event_category_title varchar(100) DEFAULT ''
 );
 
+
 CREATE TABLE tls901_techn_field_ipc (
     ipc_maingroup_symbol varchar(8) DEFAULT '' NOT NULL,
     techn_field_nr smallint DEFAULT 0 NOT NULL,
     techn_sector varchar(50) DEFAULT '' NOT NULL,
     techn_field varchar(50) DEFAULT '' NOT NULL
 );
+
 
 CREATE TABLE tls902_ipc_nace2 (
     ipc varchar(8) DEFAULT '' NOT NULL,
@@ -326,6 +339,7 @@ CREATE TABLE tls902_ipc_nace2 (
     nace2_weight smallint DEFAULT 1 NOT NULL,
     nace2_descr varchar(150) DEFAULT '' NOT NULL
 );
+
 
 CREATE TABLE tls904_nuts (
     nuts varchar(5) DEFAULT ('') NOT NULL,
