@@ -20,7 +20,7 @@ CREATE TABLE tls231_inpadoc_legal_event (
     ref_doc_date date DEFAULT '9999-12-31' NOT NULL,
     ref_doc_text text DEFAULT '',
     party_type varchar(3) DEFAULT '',
-    party_seq_nr smallint default '0',
+    party_seq_nr smallint default 0,
     party_new text DEFAULT '',
     party_old text DEFAULT '',
     spc_nr varchar(40) DEFAULT '',
@@ -32,7 +32,7 @@ CREATE TABLE tls231_inpadoc_legal_event (
     extension_states varchar(30) DEFAULT '',
     fee_country char(2) DEFAULT '',
     fee_payment_date date DEFAULT '9999-12-31' NOT NULL,
-    fee_renewal_year smallint DEFAULT '9999' NOT NULL,
+    fee_renewal_year smallint DEFAULT 9999 NOT NULL,
     fee_text text DEFAULT '',
     lapse_country char(2) DEFAULT '',
     lapse_date date  DEFAULT '9999-12-31' NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE tls231_inpadoc_legal_event (
 */
 
 type Tls231InpadocLegalEvent struct {
-	EventID             int       `json:"eventId" gorm:"column:event_id;type:integer;default:0;not null"`
+	EventID             int       `json:"eventId" gorm:"primaryKey;column:event_id;type:integer;default:0;not null"`
 	ApplnID             int       `json:"applnId" gorm:"column:appln_id;type:integer;default:0;not null"`
 	EventSeqNr          int16     `json:"eventSeqNr" gorm:"column:event_seq_nr;type:smallint;default:0;"`
 	EventType           string    `json:"eventType" gorm:"column:event_type;type:char(3);default:'';"`
@@ -74,7 +74,7 @@ type Tls231InpadocLegalEvent struct {
 	ExtensionStates     string    `json:"extensionStates" gorm:"column:extension_states;type:varchar(30);default:'';"`
 	FeeCountry          string    `json:"feeCountry" gorm:"column:fee_country;type:char(2);default:'';"`
 	FeePaymentDate      time.Time `json:"feePaymentDate" gorm:"column:fee_payment_date;type:date;default:'9999-12-31';not null"`
-	FeeRenewalYear      int16     `json:"feeRenewalYear" gorm:"column:fee_renewal_year;type:smallint;default:'9999';not null"`
+	FeeRenewalYear      int16     `json:"feeRenewalYear" gorm:"column:fee_renewal_year;type:smallint;default:9999;not null"`
 	FeeText             string    `json:"feeText" gorm:"column:fee_text;type:text;default:'';"`
 	LapseCountry        string    `json:"lapseCountry" gorm:"column:lapse_country;type:char(2);default:'';"`
 	LapseDate           time.Time `json:"lapseDate" gorm:"column:lapse_date;type:date;"`

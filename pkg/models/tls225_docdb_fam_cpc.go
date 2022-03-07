@@ -17,9 +17,9 @@ CREATE TABLE tls225_docdb_fam_cpc (
 */
 
 type Tls225DocdbFamCpc struct {
-	DocdbFamilyID  int       `json:"docdbFamilyId" gorm:"column:docdb_family_id;type:integer;default:0;not null"`
-	CpcClassSymbol string    `json:"cpcClassSymbol" gorm:"column:cpc_class_symbol;type:varchar(19);default:'';not null"`
-	CpcGenerAuth   string    `json:"cpcGenerAuth" gorm:"column:cpc_gener_auth;type:varchar(2);default:'';not null"`
+	DocdbFamilyID  int       `json:"docdbFamilyId" gorm:"primaryKey;column:docdb_family_id;type:integer;default:0;not null"`
+	CpcClassSymbol string    `json:"cpcClassSymbol" gorm:"primaryKey;column:cpc_class_symbol;type:varchar(19);default:'';not null"`
+	CpcGenerAuth   string    `json:"cpcGenerAuth" gorm:"primaryKey;column:cpc_gener_auth;type:varchar(2);default:'';not null"`
 	CpcVersion     time.Time `json:"cpcVersion" gorm:"column:cpc_version;type:date;default:'9999-12-31';not null"`
 	CpcPosition    string    `json:"cpcPosition" gorm:"column:cpc_position;type:char(1);default:'';not null"`
 	CpcValue       string    `json:"cpcValue" gorm:"column:cpc_value;type:char(1);default:'';not null"`

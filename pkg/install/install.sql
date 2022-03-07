@@ -122,7 +122,7 @@ CREATE TABLE tls212_citation (
     citn_origin char(3) DEFAULT '' NOT NULL,
     cited_pat_publn_id integer DEFAULT 0 NOT NULL,
     cited_appln_id integer DEFAULT 0 NOT NULL,
-    pat_citn_seq_nr smallint DEFAULT 0::smallint NOT NULL,
+    pat_citn_seq_nr smallint DEFAULT 0 NOT NULL,
     cited_npl_publn_id varchar(32) DEFAULT '0' NOT NULL,
     npl_citn_seq_nr smallint DEFAULT 0 NOT NULL,
     citn_gener_auth char(2) DEFAULT '' NOT NULL
@@ -274,7 +274,7 @@ CREATE TABLE tls231_inpadoc_legal_event (
     ref_doc_date date DEFAULT '9999-12-31' NOT NULL,
     ref_doc_text text DEFAULT '',
     party_type varchar(3) DEFAULT '',
-    party_seq_nr smallint default '0',
+    party_seq_nr smallint default 0,
     party_new text DEFAULT '',
     party_old text DEFAULT '',
     spc_nr varchar(40) DEFAULT '',
@@ -343,6 +343,6 @@ CREATE TABLE tls902_ipc_nace2 (
 
 CREATE TABLE tls904_nuts (
     nuts varchar(5) DEFAULT ('') NOT NULL,
-    nuts_level smallint DEFAULT '0',
+    nuts_level smallint DEFAULT 0,
     nuts_label varchar(250) DEFAULT ''
 );

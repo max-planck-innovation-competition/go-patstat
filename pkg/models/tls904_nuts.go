@@ -9,8 +9,8 @@ CREATE TABLE tls904_nuts (
 */
 
 type Tls904Nuts struct {
-	Nuts      string `json:"nuts" gorm:"column:nuts;type:varchar(5);"`
-	NutsLevel int16  `json:"nutsLevel" gorm:"column:nuts_level;type:smallint;default:'0';"`
+	Nuts      string `json:"nuts" gorm:"primaryKey;column:nuts;type:varchar(5);"`
+	NutsLevel int16  `json:"nutsLevel" gorm:"column:nuts_level;type:smallint;default:0;"`
 	NutsLabel string `json:"nutsLabel" gorm:"column:nuts_label;type:varchar(250);default:'';"`
 }
 

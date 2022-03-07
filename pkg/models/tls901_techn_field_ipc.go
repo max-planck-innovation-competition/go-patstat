@@ -10,7 +10,7 @@ CREATE TABLE tls901_techn_field_ipc (
 */
 
 type Tls901TechnFieldIpc struct {
-	IpcMaingroupSymbol string `json:"ipcMaingroupSymbol" gorm:"column:ipc_maingroup_symbol;type:varchar(8);default:'';not null"`
+	IpcMaingroupSymbol string `json:"ipcMaingroupSymbol" gorm:"primaryKey;column:ipc_maingroup_symbol;type:varchar(8);default:'';not null"`
 	TechnFieldNr       int16  `json:"technFieldNr" gorm:"column:techn_field_nr;type:smallint;default:0;not null"`
 	TechnSector        string `json:"technSector" gorm:"column:techn_sector;type:varchar(50);default:'';not null"`
 	TechnField         string `json:"technField" gorm:"column:techn_field;type:varchar(50);default:'';not null"`

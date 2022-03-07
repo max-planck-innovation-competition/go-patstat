@@ -11,7 +11,7 @@ CREATE TABLE tls215_citn_categ (
 */
 
 type Tls215CitnCateg struct {
-	PatPublnID      int    `json:"patPublnId" gorm:"column:pat_publn_id;type:integer;default:0;not null"`
+	PatPublnID      int    `json:"patPublnId" gorm:"primaryKey;column:pat_publn_id;type:integer;default:0;not null"`
 	CitnReplenished int    `json:"citnReplenished" gorm:"column:citn_replenished;type:integer;default:0;not null"`
 	CitnID          int16  `json:"citnId" gorm:"column:citn_id;type:smallint;default:0;not null"`
 	CitnCateg       string `json:"citnCateg" gorm:"column:citn_categ;type:varchar(10);default:'';not null"`

@@ -9,9 +9,9 @@ CREATE TABLE tls222_appln_jp_class (
 */
 
 type Tls222ApplnJpClass struct {
-	ApplnID       int    `json:"applnId" gorm:"column:appln_id;type:integer;default:0;not null"`
-	JpClassScheme string `json:"jpClassScheme" gorm:"column:jp_class_scheme;type:varchar(5);default:'';not null"`
-	JpClassSymbol string `json:"jpClassSymbol" gorm:"column:jp_class_symbol;type:varchar(50);default:'';not null"`
+	ApplnID       int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
+	JpClassScheme string `json:"jpClassScheme" gorm:"primaryKey;column:jp_class_scheme;type:varchar(5);default:'';not null"`
+	JpClassSymbol string `json:"jpClassSymbol" gorm:"primaryKey;column:jp_class_symbol;type:varchar(50);default:'';not null"`
 }
 
 func (m *Tls222ApplnJpClass) TableName() string {

@@ -8,8 +8,8 @@ CREATE TABLE tls223_appln_docus (
 */
 
 type Tls223ApplnDocus struct {
-	ApplnID          int    `json:"applnId" gorm:"column:appln_id;type:integer;default:0;not null"`
-	DocusClassSymbol string `json:"docusClassSymbol" gorm:"column:docus_class_symbol;type:varchar(50);default:'';not null"`
+	ApplnID          int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
+	DocusClassSymbol string `json:"docusClassSymbol" gorm:"primaryKey;column:docus_class_symbol;type:varchar(50);default:'';not null"`
 }
 
 func (m *Tls223ApplnDocus) TableName() string {

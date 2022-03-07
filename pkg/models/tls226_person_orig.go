@@ -29,7 +29,7 @@ CREATE TABLE tls226_person_orig (
 */
 
 type Tls226PersonOrig struct {
-	PersonOrigID      int    `json:"personOrigId" gorm:"column:person_orig_id;type:integer;default:0;not null"`
+	PersonOrigID      int    `json:"personOrigId" gorm:"primaryKey;column:person_orig_id;type:integer;default:0;not null"`
 	PersonID          int    `json:"personId" gorm:"column:person_id;type:integer;default:0;not null"`
 	Source            string `json:"source" gorm:"column:source;type:char(5);default:'';not null"`
 	SourceVersion     string `json:"sourceVersion" gorm:"column:source_version;type:varchar(10);default:'';not null"`

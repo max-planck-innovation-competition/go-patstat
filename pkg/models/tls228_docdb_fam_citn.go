@@ -8,8 +8,8 @@ CREATE TABLE tls228_docdb_fam_citn (
 */
 
 type Tls228DocdbFamCitn struct {
-	DocdbFamilyID      int `json:"docdbFamilyId" gorm:"column:docdb_family_id;type:integer;default:0;not null"`
-	CitedDocdbFamilyID int `json:"citedDocdbFamilyId" gorm:"column:cited_docdb_family_id;type:integer;default:0;not null"`
+	DocdbFamilyID      int `json:"docdbFamilyId" gorm:"primaryKey;column:docdb_family_id;type:integer;default:0;not null"`
+	CitedDocdbFamilyID int `json:"citedDocdbFamilyId" gorm:"primaryKey;column:cited_docdb_family_id;type:integer;default:0;not null"`
 }
 
 func (m *Tls228DocdbFamCitn) TableName() string {

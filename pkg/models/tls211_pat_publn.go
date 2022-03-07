@@ -18,7 +18,7 @@ CREATE TABLE tls211_pat_publn (
 */
 
 type Tls211PatPubln struct {
-	PatPublnID      int       `json:"patPublnId" gorm:"column:pat_publn_id;type:integer;default:0;not null"`
+	PatPublnID      int       `json:"patPublnId" gorm:"primaryKey;column:pat_publn_id;type:integer;default:0;not null"`
 	PublnAuth       string    `json:"publnAuth" gorm:"column:publn_auth;type:char(2);default:'';not null"`
 	PublnNr         string    `json:"publnNr" gorm:"column:publn_nr;type:varchar(15);default:'';not null"`
 	PublnNrOriginal string    `json:"publnNrOriginal" gorm:"column:publn_nr_original;type:varchar(100);default:'';not null"`

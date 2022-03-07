@@ -13,8 +13,8 @@ CREATE TABLE tls803_legal_event_code (
 */
 
 type Tls803LegalEventCode struct {
-	EventAuth          string `json:"eventAuth" gorm:"column:event_auth;type:char(2);default:'';not null"`
-	EventCode          string `json:"eventCode" gorm:"column:event_code;type:varchar(4);default:'';not null"`
+	EventAuth          string `json:"eventAuth" gorm:"primaryKey;column:event_auth;type:char(2);default:'';not null"`
+	EventCode          string `json:"eventCode" gorm:"primaryKey;column:event_code;type:varchar(4);default:'';not null"`
 	EventImpact        string `json:"eventImpact" gorm:"column:event_impact;type:char(1);default:'';"`
 	EventDescr         string `json:"eventDescr" gorm:"column:event_descr;type:varchar(250);default:'';"`
 	EventDescrOrig     string `json:"eventDescrOrig" gorm:"column:event_descr_orig;type:varchar(250);default:'';"`
