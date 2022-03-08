@@ -40,10 +40,10 @@ type Tls211PatPubln struct {
 	PublnFirstGrant string    `json:"publnFirstGrant" gorm:"column:publn_first_grant;type:char(1);default:'';not null"`
 	PublnClaims     int       `json:"publnClaims" gorm:"column:publn_claims;type:integer;default:0;not null"`
 	// relations
-	Application        Tls201Appln       `json:"application" gorm:"foreignKey:appln_id"`
-	PublicationPersons []Tls227PersPubln `gorm:"foreignKey:pat_publn_id"`
-	Citations          []Tls212Citation  `json:"citations" gorm:"foreignKey:pat_publn_id"`
-	Cited              []Tls212Citation  `json:"cited" gorm:"foreignKey:cited_pat_publn_id"`
+	Application *Tls201Appln      `json:"application" gorm:"foreignKey:appln_id"`
+	Persons     []*Tls206Person   `json:"persons" gorm:"many2many:tls227_pers_publn;foreignKey:pat_publn_id;joinForeignKey:person_id;"`
+	Citations   []*Tls212Citation `json:"citations" gorm:"foreignKey:pat_publn_id"`
+	Cited       []*Tls212Citation `json:"cited" gorm:"foreignKey:cited_pat_publn_id"`
 }
 
 func (m *Tls211PatPubln) TableName() string {

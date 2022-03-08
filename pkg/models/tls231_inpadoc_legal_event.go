@@ -91,7 +91,7 @@ type Tls231InpadocLegalEvent struct {
 	ClassScheme         string    `json:"classScheme" gorm:"column:class_scheme;type:varchar(4);default:'';"`
 	ClassSymbol         string    `json:"classSymbol" gorm:"column:class_symbol;type:varchar(50);default:'';"`
 	// relations
-	LegalEventCode Tls803LegalEventCode `json:"legalEventCode" gorm:"foreignKey:event_code,event_auth"`
+	LegalEventCode *Tls803LegalEventCode `json:"legalEventCode" gorm:"foreignKey:event_code,event_auth"`
 }
 
 func (m *Tls231InpadocLegalEvent) TableName() string {

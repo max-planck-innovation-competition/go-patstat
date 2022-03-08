@@ -39,28 +39,28 @@ CREATE TABLE tls226_person_orig (
 // Each row has one corresponding row in TLS206_PERSON. In these tables the data has
 // been cleaned and unified and its table structure has been simplified and normalised.
 type Tls226PersonOrig struct {
-	PersonOrigID      int    `json:"personOrigId" gorm:"primaryKey;column:person_orig_id;type:integer;default:0;not null"`
-	PersonID          int    `json:"personId" gorm:"column:person_id;type:integer;default:0;not null"`
-	Source            string `json:"source" gorm:"column:source;type:char(5);default:'';not null"`
-	SourceVersion     string `json:"sourceVersion" gorm:"column:source_version;type:varchar(10);default:'';not null"`
-	NameFreeform      string `json:"nameFreeform" gorm:"column:name_freeform;type:varchar(500);default:'';not null"`
-	PersonNameOrigLg  string `json:"personNameOrigLg" gorm:"column:person_name_orig_lg;type:varchar(500);default:'';not null"`
-	LastName          string `json:"lastName" gorm:"column:last_name;type:varchar(500);default:'';not null"`
-	FirstName         string `json:"firstName" gorm:"column:first_name;type:varchar(500);default:'';not null"`
-	MiddleName        string `json:"middleName" gorm:"column:middle_name;type:varchar(500);default:'';not null"`
-	AddressFreeform   string `json:"addressFreeform" gorm:"column:address_freeform;type:varchar(1000);default:'';not null"`
-	Address1          string `json:"address1" gorm:"column:address_1;type:varchar(500);default:'';not null"`
-	Address2          string `json:"address2" gorm:"column:address_2;type:varchar(500);default:'';not null"`
-	Address3          string `json:"address3" gorm:"column:address_3;type:varchar(500);default:'';not null"`
-	Address4          string `json:"address4" gorm:"column:address_4;type:varchar(500);default:'';not null"`
-	Address5          string `json:"address5" gorm:"column:address_5;type:varchar(500);default:'';not null"`
-	Street            string `json:"street" gorm:"column:street;type:varchar(500);default:'';not null"`
-	City              string `json:"city" gorm:"column:city;type:varchar(200);default:'';not null"`
-	ZipCode           string `json:"zipCode" gorm:"column:zip_code;type:varchar(30);default:'';not null"`
-	State             string `json:"state" gorm:"column:state;type:char(2);default:'';not null"`
-	PersonCtryCode    string `json:"personCtryCode" gorm:"column:person_ctry_code;type:char(2);default:'';not null"`
-	ResidenceCtryCode string `json:"residenceCtryCode" gorm:"column:residence_ctry_code;type:char(2);default:'';not null"`
-	Role              string `json:"role" gorm:"column:role;type:varchar(2);default:'';not null"`
+	PersonOrigID      int    `csv:"column" json:"personOrigId" gorm:"primaryKey;column:person_orig_id;type:integer;default:0;not null"`
+	PersonID          int    `csv:"person_id" json:"personId" gorm:"column:person_id;type:integer;default:0;not null"`
+	Source            string `csv:"source" json:"source" gorm:"column:source;type:char(5);default:'';not null"`
+	SourceVersion     string `csv:"source_version" json:"sourceVersion" gorm:"column:source_version;type:varchar(10);default:'';not null"`
+	NameFreeform      string `csv:"name_freeform" json:"nameFreeform" gorm:"column:name_freeform;type:varchar(500);default:'';not null"`
+	PersonNameOrigLg  string `csv:"person_name_orig_lg" json:"personNameOrigLg" gorm:"column:person_name_orig_lg;type:varchar(500);default:'';not null"`
+	LastName          string `csv:"last_name" json:"lastName" gorm:"column:last_name;type:varchar(500);default:'';not null"`
+	FirstName         string `csv:"first_name" json:"firstName" gorm:"column:first_name;type:varchar(500);default:'';not null"`
+	MiddleName        string `csv:"middle_name" json:"middleName" gorm:"column:middle_name;type:varchar(500);default:'';not null"`
+	AddressFreeform   string `csv:"address_freeform" json:"addressFreeform" gorm:"column:address_freeform;type:varchar(1000);default:'';not null"`
+	Address1          string `csv:"address_1" json:"address1" gorm:"column:address_1;type:varchar(500);default:'';not null"`
+	Address2          string `csv:"address_2" json:"address2" gorm:"column:address_2;type:varchar(500);default:'';not null"`
+	Address3          string `csv:"address_3" json:"address3" gorm:"column:address_3;type:varchar(500);default:'';not null"`
+	Address4          string `csv:"address_4" json:"address4" gorm:"column:address_4;type:varchar(500);default:'';not null"`
+	Address5          string `csv:"address_5" json:"address5" gorm:"column:address_5;type:varchar(500);default:'';not null"`
+	Street            string `csv:"street" json:"street" gorm:"column:street;type:varchar(500);default:'';not null"`
+	City              string `csv:"city" json:"city" gorm:"column:city;type:varchar(200);default:'';not null"`
+	ZipCode           string `csv:"zip_code" json:"zipCode" gorm:"column:zip_code;type:varchar(30);default:'';not null"`
+	State             string `csv:"state" json:"state" gorm:"column:state;type:char(2);default:'';not null"`
+	PersonCtryCode    string `csv:"person_ctry_code" json:"personCtryCode" gorm:"column:person_ctry_code;type:char(2);default:'';not null"`
+	ResidenceCtryCode string `csv:"residence_ctry_code" json:"residenceCtryCode" gorm:"column:residence_ctry_code;type:char(2);default:'';not null"`
+	Role              string `csv:"role" json:"role" gorm:"column:role;type:varchar(2);default:'';not null"`
 }
 
 func (m *Tls226PersonOrig) TableName() string {

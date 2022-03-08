@@ -55,7 +55,7 @@ type Tls214NplPubln struct {
 	OnlineClassification string `json:"onlineClassification" gorm:"column:online_classification;type:varchar(35);default:'';not null"`
 	OnlineSearchDate     string `json:"onlineSearchDate" gorm:"column:online_search_date;type:varchar(8);default:'';not null"`
 	// relations
-	Citations []Tls212Citation `json:"citations" gorm:"foreignKey:cited_npl_publn_id"`
+	Citations []*Tls212Citation `json:"citations" gorm:"foreignKey:cited_npl_publn_id"`
 }
 
 func (m *Tls214NplPubln) TableName() string {

@@ -22,6 +22,7 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.4 // indirect
 	github.com/joho/godotenv v1.3.0 // indirect
+	github.com/jszwec/csvutil v1.6.0 // indirect
 	github.com/mattn/go-sqlite3 v1.14.12 // indirect
 	golang.org/x/crypto v0.0.0-20220214200702-86341886e292 // indirect
 	golang.org/x/sys v0.0.0-20210823070655-63515b42dcdf // indirect

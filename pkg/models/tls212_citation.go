@@ -41,7 +41,7 @@ type Tls212Citation struct {
 	NplCitnSeqNr    int16  `json:"nplCitnSeqNr" gorm:"column:npl_citn_seq_nr;type:smallint;default:0;not null"`
 	CitnGenerAuth   string `json:"citnGenerAuth" gorm:"column:citn_gener_auth;type:char(2);default:'';not null"`
 	// relations
-	Category Tls215CitnCateg `json:"category" gorm:"foreignKey:pat_publn_id,citn_replenished,citn_id;references:pat_publn_id,citn_replenished,citn_id"`
+	Category *Tls215CitnCateg `json:"category" gorm:"foreignKey:pat_publn_id,citn_replenished,citn_id;references:pat_publn_id,citn_replenished,citn_id"`
 }
 
 func (m *Tls212Citation) TableName() string {
