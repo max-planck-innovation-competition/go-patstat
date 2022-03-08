@@ -81,7 +81,7 @@ func Install() {
 }
 
 func tables() (err error) {
-	// create all the tables
+	// all tables
 	err = connections.SQLClient.AutoMigrate(
 		&models.Tls904Nuts{},
 		&models.Tls902IpcNace2{},
