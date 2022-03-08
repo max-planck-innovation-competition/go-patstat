@@ -2,9 +2,9 @@ package install
 
 import (
 	"fmt"
+	"github.com/max-planck-innovation-competition/go-patstat/connections"
+	"github.com/max-planck-innovation-competition/go-patstat/pkg/models"
 	log "github.com/sirupsen/logrus"
-	"patstat/connections"
-	"patstat/pkg/models"
 )
 
 func checkIfDBExists() (exists bool, err error) {

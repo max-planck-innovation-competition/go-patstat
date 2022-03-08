@@ -2,8 +2,8 @@ package install
 
 import (
 	"fmt"
+	"github.com/max-planck-innovation-competition/go-patstat/connections"
 	log "github.com/sirupsen/logrus"
-	"patstat/connections"
 )
 
 // Uninstall deletes all tables and data from the database
