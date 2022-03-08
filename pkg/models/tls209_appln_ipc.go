@@ -16,6 +16,13 @@ CREATE TABLE tls209_appln_ipc (
 
 // Tls209ApplnIpc is a structure representing ipc classification for an application
 // IPC is the International Patent Classification, which is maintained by WIPO and used by all patent offices
+//
+// The table contains all international patent classifications linked to the applications. The set
+// of classifications linked to a single application is a de-duplicated merge of all classifications
+// of the various publication instances linked to the specific application. Additionally, only the
+// latest version of the IPC classifications is used. This means that the user does not have to
+// worry about reclassifications because older applications will always be classified according
+// to the latest IPC version.
 type Tls209ApplnIpc struct {
 	ApplnID        int       `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
 	IpcClassSymbol string    `json:"ipcClassSymbol" gorm:"primaryKey;column:ipc_class_symbol;type:varchar(15);default:'';not null"`

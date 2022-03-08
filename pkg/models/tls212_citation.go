@@ -24,6 +24,11 @@ CREATE TABLE tls212_citation (
 // Each citation has one or more categories (TLS215_CITN_CATEG), which indicate the
 // relevance of the citations. E. g. citation category “X” indicates that the claimed invention
 // cannot be considered as novel due to the existence of the cited document.
+//
+// This table establishes the links between publications, applications and non-patent
+// literature documents with regards to citations. Forward and backward citations are defined
+// as well as the citation generating authority (e.g. search authority) and the procedural step
+// in which the citation was created (e.g. search report or opposition procedure).
 type Tls212Citation struct {
 	PatPublnID      int    `json:"patPublnId" gorm:"primaryKey;column:pat_publn_id;type:integer;default:0;not null"`
 	CitnReplenished int    `json:"citnReplenished" gorm:"primaryKey;column:citn_replenished;type:integer;default:0;not null"`

@@ -11,6 +11,10 @@ CREATE TABLE tls902_ipc_nace2 (
 );
 */
 
+// Tls902IpcNace2 is a structure representing a row of data from the 'tls902_ipc_nace2' table.
+// A reference table which contains the mapping between the IPC classification and the
+// NACE2 codes for industrial sectors. The industrial sectors allow for the grouping of
+// applications based on the industry.
 type Tls902IpcNace2 struct {
 	Ipc           string `json:"ipc" gorm:"primaryKey;column:ipc;type:varchar(8);default:'';not null"`
 	NotWithIpc    string `json:"notWithIpc" gorm:"primaryKey;column:not_with_ipc;type:varchar(8);default:'';not null"`

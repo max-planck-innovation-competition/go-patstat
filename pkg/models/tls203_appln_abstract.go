@@ -6,6 +6,9 @@ package models
 // the publication.
 // Abstracts can be in any language. PATSTAT contains only 1 abstract per application.
 // Abstracts in English language are preferred. (TLS203_APPLN_ABSTRACT)
+//
+// This table contains the English language abstract, if available. If there is no abstract in
+// English, then it contains the most recent abstract in another language.
 type Tls203ApplnAbstr struct {
 	ApplnId         int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
 	ApplnAbstractLg string `json:"applnTitleLg" gorm:"column:appln_title_lg;type:char(2);default:'';not null"`

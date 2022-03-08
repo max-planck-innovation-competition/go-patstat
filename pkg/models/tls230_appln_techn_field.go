@@ -8,6 +8,8 @@ CREATE TABLE tls230_appln_techn_field (
 );
 */
 
+// Tls230ApplnTechnField is a structure representing a row of the tls230_appln_techn_field table in the database
+// This table tells to which degree an application belongs to one or more technical fields.
 type Tls230ApplnTechnField struct {
 	ApplnID      int   `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
 	TechnFieldNr int16 `json:"technFieldNr" gorm:"primaryKey;column:techn_field_nr;type:smallint;default:0;not null"`

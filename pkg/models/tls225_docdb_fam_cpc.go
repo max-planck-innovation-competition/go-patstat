@@ -27,6 +27,11 @@ CREATE TABLE tls225_docdb_fam_cpc (
 // classifications (CPC symbols) assigned. The same CPC symbol can be assigned to the
 // same DOCDB family by one or more patent offices.
 // This table contains detailed information for each assignment.
+//
+// All applications of the same DOCDB simple family have the same cooperative patent
+// classifications (CPC symbols) assigned. The same CPC symbol can be assigned to the
+// same DOCDB family by one or more patent offices.
+// This table contains detailed information for each assignment.
 
 type Tls225DocdbFamCpc struct {
 	DocdbFamilyID  int       `json:"docdbFamilyId" gorm:"primaryKey;column:docdb_family_id;type:integer;default:0;not null"`

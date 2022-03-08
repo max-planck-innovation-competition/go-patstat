@@ -17,6 +17,17 @@ CREATE TABLE tls211_pat_publn (
 );
 */
 
+// Tls211PatPubln is a structure representing a row from the 'tls211_pat_publn' table
+// This table contains the key bibliographical data elements relevant to identify patent
+// publications. These elements can be found on the first page of printed patent documents.
+// For example: publication authority, publication number, publication kind and publication
+// date. This table is directly linked to the TLS201_APPLN table via the appln_id, a surrogate
+// key that groups all the data elements from a single patent application. 2 important extra
+// elements that cannot be found on a patent publication have been added:
+// a) The PUBLN_FIRST_GRANT:
+// indication that this publication was the first indication of a patent grant
+// b) PUBLN_CLAIMS:
+// number of claims (only available for a number of publishing authorities).
 type Tls211PatPubln struct {
 	PatPublnID      int       `json:"patPublnId" gorm:"primaryKey;column:pat_publn_id;type:integer;default:0;not null"`
 	PublnAuth       string    `json:"publnAuth" gorm:"column:publn_auth;type:char(2);default:'';not null"`

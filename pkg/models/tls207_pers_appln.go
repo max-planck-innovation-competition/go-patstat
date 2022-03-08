@@ -9,6 +9,10 @@ CREATE TABLE tls207_pers_appln (
 );
 */
 
+// Tls207PersAppln is a structure representing a row of data from the 'tls207_pers_appln' table
+// This table links the applicants and inventors of the most recent publication to an
+// application. Publications which contain only persons with non-Latin names
+// (e.g. with Chinese characters) are not considered here.
 type Tls207PersAppln struct {
 	PersonID   int   `json:"personId" gorm:"primaryKey;column:person_id;type:integer;default:0;not null"`
 	ApplnID    int   `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`

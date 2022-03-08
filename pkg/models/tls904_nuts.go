@@ -8,6 +8,10 @@ CREATE TABLE tls904_nuts (
 );
 */
 
+// Tls904Nuts is a table which contains the regions of the Nomenclature of Territorial Units for Statistics
+// NUTS (Nomenclature of Territorial Units for Statistics) is a European Union standard for
+// referencing the subdivisions of countries for statistical purposes. This reference table
+// contains the regions of the NUTS levels 0 - 3
 type Tls904Nuts struct {
 	Nuts      string `json:"nuts" gorm:"primaryKey;column:nuts;type:varchar(5);"`
 	NutsLevel int16  `json:"nutsLevel" gorm:"column:nuts_level;type:smallint;default:0;"`

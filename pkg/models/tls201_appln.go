@@ -49,6 +49,12 @@ CREATE TABLE tls201_appln (
 // Strictly speaking, title, abstract, persons and classifications are part of the publication.
 // However, by design, in PATSTAT these domain objects are related not to the individual
 // publication, but to the application of the publication.
+//
+// This table contains the key bibliographical data elements relevant to identify the patent
+// application. Most of the elements in this table can be found on the first page of a printed
+// patent document. E.g.: application authority, application number and application filing date.
+// From a database structure point of view, this table is very important because it links to
+// many other database tables via the attribute APPLN_ID.
 type Tls201Appln struct {
 	ApplnId            int       `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
 	ApplnAuth          string    `json:"applnAuth" gorm:"column:appln_auth;type:char(2);default:'';not null"`

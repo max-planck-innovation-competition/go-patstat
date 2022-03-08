@@ -45,6 +45,12 @@ CREATE TABLE tls231_inpadoc_legal_event (
 );
 */
 
+// Tls231InpadocLegalEvent is a structure representing a row in the tls231_inpadoc_legal_event table
+// This table holds the INPADOC data, which contains information on legal events that
+// occurred during the life of a patent, either before or after grant. Typical events are request
+// for examination, payment of renewal fees, lapse of the patent, change of ownership,
+// withdrawal of the application, patent applications entering the national phase, patents which
+// have been opposed or revoked, etc.
 type Tls231InpadocLegalEvent struct {
 	EventID             int       `json:"eventId" gorm:"primaryKey;column:event_id;type:integer;default:0;not null"`
 	ApplnID             int       `json:"applnId" gorm:"column:appln_id;type:integer;default:0;not null"`

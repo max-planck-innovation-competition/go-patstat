@@ -22,6 +22,15 @@ CREATE TABLE tls206_person (
 
 */
 
+// Tls206Person is a structure representing a person
+// Table that contains the key data on applicants and inventors such as: the person name,
+// the address and the country/territory of residence (which is not necessarily the nationality).
+// Several types of names are available:
+// - The name as delivered by the offices
+// - The name in original language, possibly in a non-Latin character set
+// - The name as standardised by the EPO (DOCDB standardised name)
+// - The PATSTAT standardised name
+// - The name as standardised by the OECD (OECD Harmonised Applicant Name)
 type Tls206Person struct {
 	PersonID         int    `json:"personId" gorm:"primaryKey;column:person_id;type:integer;default:0;not null"`
 	PersonName       string `json:"personName" gorm:"column:person_name;type:text;default:'';not null"`

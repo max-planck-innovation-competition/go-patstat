@@ -27,6 +27,10 @@ CREATE TABLE tls214_npl_publn (
 );
 */
 
+// Tls214NplPubln is a structure representing a row in the tls214_npl_publn table
+// This table contains bibliographical information on non-patent literature documents. The
+// information is available as an unstructured string. In addition and to the degree possible,
+// the information has been split up into multiple attributes.
 type Tls214NplPubln struct {
 	NplPublnID           string `json:"nplPublnId" gorm:"primaryKey;column:npl_publn_id;type:varchar(32);'default:'0';not null"`
 	XpNr                 int    `json:"xpNr" gorm:"column:xp_nr;type:integer;default:0;not null"`

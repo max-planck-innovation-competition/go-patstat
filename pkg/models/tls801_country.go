@@ -14,6 +14,9 @@ CREATE TABLE tls801_country (
 );
 */
 
+// Tls801Country is a structure representing a row from the 'tls801_country' table
+// Contains information about states/countries/territories and IP organisations, e.g. their twoand three-letter code, their (short) name and whether they are member of the EU, the EPO
+// or the OECD. This table is based on WIPO standard ST.3.
 type Tls801Country struct {
 	CtryCode         string `json:"ctryCode" gorm:"primaryKey;column:ctry_code;type:char(2);default:'';not null"`
 	IsoAlph3         string `json:"isoAlph3" gorm:"column:iso_alph3;type:varchar(3);default:'';not null"`

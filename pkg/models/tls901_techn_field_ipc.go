@@ -9,6 +9,11 @@ CREATE TABLE tls901_techn_field_ipc (
 );
 */
 
+// Tls901TechnFieldIpc is a structure representing a row of the tls901_techn_field_ipc table in the database
+// This is the reference table which contains the mapping between 35 technology fields and
+// the much more detailed IPC classification. These technology fields allow for the easy
+// grouping of applications based on technology. The same technology fields are used by EPO
+// and WIPO for their statistics.
 type Tls901TechnFieldIpc struct {
 	IpcMaingroupSymbol string `json:"ipcMaingroupSymbol" gorm:"primaryKey;column:ipc_maingroup_symbol;type:varchar(8);default:'';not null"`
 	TechnFieldNr       int16  `json:"technFieldNr" gorm:"column:techn_field_nr;type:smallint;default:0;not null"`

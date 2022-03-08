@@ -12,6 +12,10 @@ CREATE TABLE tls803_legal_event_code (
 );
 */
 
+// Tls803LegalEventCode is a structure representing a row of data from the 'tls803_legal_event_code' table
+// This table contains all legal event codes which are used in EPO’s worldwide legal event
+// database (also called INPADOC database). Similar legal event codes are grouped into legal
+// event categories.
 type Tls803LegalEventCode struct {
 	EventAuth          string `json:"eventAuth" gorm:"primaryKey;column:event_auth;type:char(2);default:'';not null"`
 	EventCode          string `json:"eventCode" gorm:"primaryKey;column:event_code;type:varchar(4);default:'';not null"`
