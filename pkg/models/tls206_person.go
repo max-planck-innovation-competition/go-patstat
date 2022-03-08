@@ -39,6 +39,8 @@ type Tls206Person struct {
 	HanID            int    `json:"hanId" gorm:"column:han_id;type:integer;default:0;not null"`
 	HanName          string `json:"hanName" gorm:"column:han_name;type:text;default:'';not null"`
 	HanHarmonized    int    `json:"hanHarmonized" gorm:"column:han_harmonized;type:integer;default:0;not null"`
+	// relations
+	Unmodified Tls226PersonOrig `json:"unmodified" gorm:"foreignKey:person_id"`
 }
 
 func (m *Tls206Person) TableName() string {

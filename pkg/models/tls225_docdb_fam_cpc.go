@@ -16,6 +16,18 @@ CREATE TABLE tls225_docdb_fam_cpc (
 );
 */
 
+// Tls225DocdbFamCpc is the structure for tls225_docdb_fam_cpc table.
+// CPC – Cooperative Patent Classification in an extension of IPC.
+// It has been created in 2013 and is maintained by EPO and the US patent office.
+// Many major offices are nowadays using CPC, in addition to IPC.
+// CPC symbols are assigned on a family level (TLS225_DOCDB_FAM_CPC).
+//
+// TLS225_DOCDB_FAM_CPC: Cooperative Patent Classification by DOCDB family
+// All applications of the same DOCDB simple family have the same cooperative patent
+// classifications (CPC symbols) assigned. The same CPC symbol can be assigned to the
+// same DOCDB family by one or more patent offices.
+// This table contains detailed information for each assignment.
+
 type Tls225DocdbFamCpc struct {
 	DocdbFamilyID  int       `json:"docdbFamilyId" gorm:"primaryKey;column:docdb_family_id;type:integer;default:0;not null"`
 	CpcClassSymbol string    `json:"cpcClassSymbol" gorm:"primaryKey;column:cpc_class_symbol;type:varchar(19);default:'';not null"`

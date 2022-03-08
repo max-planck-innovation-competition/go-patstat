@@ -8,6 +8,8 @@ CREATE TABLE tls216_appln_contn (
 );
 */
 
+// Tls216ApplnContn is a structure representing a tls216_appln_contn table row
+// Continuations (TLS216_APPLN_CONTN)
 type Tls216ApplnContn struct {
 	ApplnID       int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
 	ParentApplnID int    `json:"parentApplnId" gorm:"primaryKey;column:parent_appln_id;type:integer;default:0;not null"`

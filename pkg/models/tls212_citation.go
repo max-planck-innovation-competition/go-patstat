@@ -15,10 +15,19 @@ CREATE TABLE tls212_citation (
 );
 */
 
+// Tls212Citation Citations (TLS212_CITATION) are references from patent publications to documents which
+// are regarded as relevant for the patent procedure. They are identified in various stages in that
+// procedure by various roles: by the applicant before application, during search and examination
+// by the patent office, during an opposition procedure, by a third party etc.
+// Patent publications typically cite other patent publications or non-patent literature; in less
+// frequent cases applications are also cited.
+// Each citation has one or more categories (TLS215_CITN_CATEG), which indicate the
+// relevance of the citations. E. g. citation category “X” indicates that the claimed invention
+// cannot be considered as novel due to the existence of the cited document.
 type Tls212Citation struct {
 	PatPublnID      int    `json:"patPublnId" gorm:"primaryKey;column:pat_publn_id;type:integer;default:0;not null"`
-	CitnReplenished int    `json:"citnReplenished" gorm:"column:citn_replenished;type:integer;default:0;not null"`
-	CitnID          int16  `json:"citnId" gorm:"column:citn_id;type:smallint;default:0;not null"`
+	CitnReplenished int    `json:"citnReplenished" gorm:"primaryKey;column:citn_replenished;type:integer;default:0;not null"`
+	CitnID          int16  `json:"citnId" gorm:"primaryKey;column:citn_id;type:smallint;default:0;not null"`
 	CitnOrigin      string `json:"citnOrigin" gorm:"column:citn_origin;type:char(3);default:'';not null"`
 	CitedPatPublnID int    `json:"citedPatPublnId" gorm:"column:cited_pat_publn_id;type:integer;default:0;not null"`
 	CitedApplnID    int    `json:"citedApplnId" gorm:"column:cited_appln_id;type:integer;default:0;not null"`
@@ -26,6 +35,8 @@ type Tls212Citation struct {
 	CitedNplPublnID string `json:"citedNplPublnId" gorm:"column:cited_npl_publn_id;type:varchar(32);default:0;not null"`
 	NplCitnSeqNr    int16  `json:"nplCitnSeqNr" gorm:"column:npl_citn_seq_nr;type:smallint;default:0;not null"`
 	CitnGenerAuth   string `json:"citnGenerAuth" gorm:"column:citn_gener_auth;type:char(2);default:'';not null"`
+	// relations
+	Category Tls215CitnCateg `json:"category" gorm:"foreignKey:pat_publn_id,citn_replenished,citn_id;references:pat_publn_id,citn_replenished,citn_id"`
 }
 
 func (m *Tls212Citation) TableName() string {

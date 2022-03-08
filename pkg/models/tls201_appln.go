@@ -37,6 +37,18 @@ CREATE TABLE tls201_appln (
 */
 
 // Tls201Appln is the structure for application table
+// The core domain object is the Application, which is a request for patent protection for an
+// invention filed with the EPO or another patent office.
+// During the life of a patent, various publications are issued. An application has at least one publication,
+// otherwise it would still be treated as confidential and would not be accessible in any database.
+// Exceptions are applications that, for example, have been used as a priority or have
+// been cited, but then revoked before publication.
+// Every application (TLS201_APPLN) has at least 1 publication (TLS211_PAT_PUBLN). Every
+// application belongs to exactly 1 simple family (also called DOCDB family) and to exactly 1
+// extended family (also called INPADOC family) (TLS201_APPLN).
+// Strictly speaking, title, abstract, persons and classifications are part of the publication.
+// However, by design, in PATSTAT these domain objects are related not to the individual
+// publication, but to the application of the publication.
 type Tls201Appln struct {
 	ApplnId            int       `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
 	ApplnAuth          string    `json:"applnAuth" gorm:"column:appln_auth;type:char(2);default:'';not null"`
@@ -66,13 +78,27 @@ type Tls201Appln struct {
 	NbApplicants       int       `json:"nbApplicants" gorm:"column:nb_applicants;type:smallint;default:0;not null"`
 	NbInventors        int       `json:"nbInventors" gorm:"column:nb_inventors;type:smallint;default:0;not null"`
 	// relations
-	Title              Tls202ApplnTitle   `gorm:"foreignKey:appln_id"`
-	Abstract           Tls203ApplnAbstr   `gorm:"foreignKey:appln_id"`
-	Priorities         []Tls204ApplnPrior `gorm:"foreignKey:appln_id"`
-	TechRels           []Tls205TechRel    `gorm:"foreignKey:appln_id"`
-	ApplicationPersons []Tls207PersAppln  `gorm:"foreignKey:appln_id"`
-	IpcClasses         []Tls209ApplnIpc   `gorm:"foreignKey:appln_id"`
-	Cls                []Tls210ApplnNCls  `gorm:"foreignKey:appln_id"`
+	Title                     Tls202ApplnTitle          `json:"title" gorm:"foreignKey:appln_id"`
+	Abstract                  Tls203ApplnAbstr          `json:"abstract" gorm:"foreignKey:appln_id"`
+	Priorities                []Tls204ApplnPrior        `json:"priorities" gorm:"foreignKey:appln_id"`
+	PrioritiesApplications    []Tls204ApplnPrior        `json:"prioritiesApplications" gorm:"foreignKey:prior_appln_id"`
+	TechRelations             []Tls205TechRel           `json:"techRelations" gorm:"foreignKey:appln_id"`
+	TechRelationsApplications []Tls205TechRel           `json:"techRelationsApplications" gorm:"foreignKey:tech_rel_appln_id"`
+	ApplicationPersons        []Tls207PersAppln         `json:"applicationPersons" gorm:"foreignKey:appln_id"`
+	IpcClasses                []Tls209ApplnIpc          `json:"ipcClasses" gorm:"foreignKey:appln_id"`
+	NationalClasses           []Tls210ApplnNCls         `json:"nationalClasses" gorm:"foreignKey:appln_id"`
+	Continuations             []Tls216ApplnContn        `json:"continuations" gorm:"foreignKey:appln_id"`
+	ParentContinuations       []Tls216ApplnContn        `json:"parentContinuations" gorm:"foreignKey:parent_appln_id"`
+	Citations                 []Tls212Citation          `json:"citations" gorm:"foreignKey:cited_appln_id"`
+	FamilyCitations           []Tls228DocdbFamCitn      `json:"familyCitations" gorm:"foreignKey:docdb_family_id"`
+	FamilyCited               []Tls228DocdbFamCitn      `json:"familyCited" gorm:"foreignKey:cited_docdb_family_id"`
+	JpClasses                 []Tls222ApplnJpClass      `json:"jpClasses" gorm:"foreignKey:appln_id"`
+	UsClasses                 []Tls223ApplnDocus        `json:"usClasses" gorm:"foreignKey:appln_id"`
+	CpcClasses                []Tls224ApplnCpc          `json:"cpcClasses" gorm:"foreignKey:appln_id"`
+	FamilyCpcClasses          []Tls225DocdbFamCpc       `json:"familyCpcClasses" gorm:"foreignKey:docdb_family_id"`
+	NaceCodes                 []Tls229ApplnNace2        `json:"naceCodes" gorm:"foreignKey:appln_id"`
+	TechnicalFields           []Tls230ApplnTechnField   `json:"technicalFields" gorm:"foreignKey:appln_id"`
+	LegalEvents               []Tls231InpadocLegalEvent `json:"legalEvents" gorm:"foreignKey:appln_id"`
 }
 
 func (obj *Tls201Appln) TableName() string {

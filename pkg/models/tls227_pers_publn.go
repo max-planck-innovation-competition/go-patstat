@@ -14,6 +14,8 @@ type Tls227PersPubln struct {
 	PatPublnID int `json:"patPublnId" gorm:"primaryKey;column:pat_publn_id;type:integer;default:0;not null"`
 	AppltSeqNr int `json:"appltSeqNr" gorm:"primaryKey;column:applt_seq_nr;type:integer;default:0;not null"`
 	InvtSeqNr  int `json:"invtSeqNr" gorm:"primaryKey;column:invt_seq_nr;type:integer;default:0;not null"`
+	// relations
+	Person Tls206Person `json:"person" gorm:"foreignKey:person_id;"`
 }
 
 func (m *Tls227PersPubln) TableName() string {

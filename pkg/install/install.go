@@ -53,37 +53,17 @@ func Install() {
 		}
 	}
 
-	// create all the tables
-	err = connections.SQLClient.AutoMigrate(
-		&models.Tls201Appln{},
-		&models.Tls202ApplnTitle{},
-		&models.Tls203ApplnAbstr{},
-		&models.Tls204ApplnPrior{},
-		&models.Tls205TechRel{},
-		&models.Tls206Person{},
-		&models.Tls207PersAppln{},
-		&models.Tls209ApplnIpc{},
-		&models.Tls210ApplnNCls{},
-		&models.Tls211PatPubln{},
-		&models.Tls212Citation{},
-		&models.Tls214NplPubln{},
-		&models.Tls215CitnCateg{},
-		&models.Tls216ApplnContn{},
-		&models.Tls222ApplnJpClass{},
-		&models.Tls224ApplnCpc{},
-		&models.Tls225DocdbFamCpc{},
-		&models.Tls226PersonOrig{},
-		&models.Tls227PersPubln{},
-		&models.Tls228DocdbFamCitn{},
-		&models.Tls229ApplnNace2{},
-		&models.Tls230ApplnTechnField{},
-		&models.Tls231InpadocLegalEvent{},
-		&models.Tls801Country{},
-		&models.Tls803LegalEventCode{},
-		&models.Tls901TechnFieldIpc{},
-		&models.Tls902IpcNace2{},
-		&models.Tls904Nuts{},
-	)
+	// create the tables
+	connections.SQLClient.Config.DisableForeignKeyConstraintWhenMigrating = true
+	err = tables()
+	if err != nil {
+		log.Panic(err)
+		return
+	}
+
+	// add constraints to the tables
+	connections.SQLClient.Config.DisableForeignKeyConstraintWhenMigrating = false
+	err = tables()
 	if err != nil {
 		log.Panic(err)
 		return
@@ -98,4 +78,39 @@ func Install() {
 		log.Panic(err)
 		return
 	}
+}
+
+func tables() (err error) {
+	// create all the tables
+	err = connections.SQLClient.AutoMigrate(
+		&models.Tls904Nuts{},
+		&models.Tls902IpcNace2{},
+		&models.Tls901TechnFieldIpc{},
+		&models.Tls803LegalEventCode{},
+		&models.Tls801Country{},
+		&models.Tls231InpadocLegalEvent{},
+		&models.Tls230ApplnTechnField{},
+		&models.Tls229ApplnNace2{},
+		&models.Tls228DocdbFamCitn{},
+		&models.Tls227PersPubln{},
+		&models.Tls226PersonOrig{},
+		&models.Tls225DocdbFamCpc{},
+		&models.Tls224ApplnCpc{},
+		&models.Tls222ApplnJpClass{},
+		&models.Tls216ApplnContn{},
+		&models.Tls215CitnCateg{},
+		&models.Tls214NplPubln{},
+		&models.Tls212Citation{},
+		&models.Tls211PatPubln{},
+		&models.Tls210ApplnNCls{},
+		&models.Tls209ApplnIpc{},
+		&models.Tls207PersAppln{},
+		&models.Tls206Person{},
+		&models.Tls205TechRel{},
+		&models.Tls204ApplnPrior{},
+		&models.Tls203ApplnAbstr{},
+		&models.Tls202ApplnTitle{},
+		&models.Tls201Appln{},
+	)
+	return
 }

@@ -1,6 +1,11 @@
 package models
 
 // Tls203ApplnAbstr is the structure for the application abstract
+// This is the 1-paragraph summary of the invention which is shown on the first page of a publication.
+// By design, in PATSTAT abstracts are related not to the individual publication, but to the application of
+// the publication.
+// Abstracts can be in any language. PATSTAT contains only 1 abstract per application.
+// Abstracts in English language are preferred. (TLS203_APPLN_ABSTRACT)
 type Tls203ApplnAbstr struct {
 	ApplnId         int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
 	ApplnAbstractLg string `json:"applnTitleLg" gorm:"column:appln_title_lg;type:char(2);default:'';not null"`

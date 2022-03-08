@@ -28,6 +28,16 @@ CREATE TABLE tls226_person_orig (
 );
 */
 
+// Tls226PersonOrig is a structure representing a row in the tls226_person_orig table
+// TLS226_PERSON_ORIG: Unmodified person data
+// This table is best suited for detailed analysis of person data.
+// A row contains the name and address of a person (applicant and/or inventors; physical
+// person or legal person). The data is taken from various data sources. It is kept in the
+// "original" form, i.e. the data has not been cleaned, aggregated or otherwise modified.
+// Depending on the data structure of each data source, not all attributes of this table are
+// populated for every person.
+// Each row has one corresponding row in TLS206_PERSON. In these tables the data has
+// been cleaned and unified and its table structure has been simplified and normalised.
 type Tls226PersonOrig struct {
 	PersonOrigID      int    `json:"personOrigId" gorm:"primaryKey;column:person_orig_id;type:integer;default:0;not null"`
 	PersonID          int    `json:"personId" gorm:"column:person_id;type:integer;default:0;not null"`
