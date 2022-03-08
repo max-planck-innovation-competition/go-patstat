@@ -1,4 +1,4 @@
-module patstat
+module github.com/max-planck-innovation-competition/go-patstat
 
 go 1.17
 
