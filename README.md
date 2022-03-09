@@ -15,6 +15,8 @@ This allows for creation of PATSTAT in:
 
 Under development
 
+**⚠️ Experimental - Not ready for production.**
+
 ## Author
 
 Sebastian Erhardt
