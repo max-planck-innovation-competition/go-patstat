@@ -22,6 +22,7 @@ type Tls216ApplnContn struct {
 	ContnType     string `json:"contnType" gorm:"column:contn_type;type:char(3);default:'';not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls216ApplnContn) TableName() string {
 	return "tls216_appln_contn"
 }

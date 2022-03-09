@@ -29,6 +29,7 @@ type Tls801Country struct {
 	Discontinued     string `json:"discontinued" gorm:"column:discontinued;type:varchar(1);default:'';not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls801Country) TableName() string {
 	return "tls801_country"
 }

@@ -94,6 +94,7 @@ type Tls231InpadocLegalEvent struct {
 	LegalEventCode *Tls803LegalEventCode `json:"legalEventCode" gorm:"foreignKey:event_code,event_auth"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls231InpadocLegalEvent) TableName() string {
 	return "tls231_inpadoc_legal_event"
 }

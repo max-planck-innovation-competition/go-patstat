@@ -21,6 +21,7 @@ type Tls901TechnFieldIpc struct {
 	TechnField         string `json:"technField" gorm:"column:techn_field;type:varchar(50);default:'';not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls901TechnFieldIpc) TableName() string {
 	return "tls901_techn_field_ipc"
 }

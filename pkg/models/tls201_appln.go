@@ -107,6 +107,7 @@ type Tls201Appln struct {
 	LegalEvents               []*Tls231InpadocLegalEvent `json:"legalEvents" gorm:"foreignKey:appln_id"`
 }
 
+// TableName sets the sql table name for this struct type
 func (obj *Tls201Appln) TableName() string {
 	return "tls201_appln"
 }

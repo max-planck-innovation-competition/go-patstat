@@ -15,6 +15,7 @@ type Tls203ApplnAbstr struct {
 	ApplnAbstract   string `json:"applnTitle" gorm:"column:appln_title;type:text;not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (obj *Tls203ApplnAbstr) TableName() string {
 	return "tls203_appln_abstr"
 }

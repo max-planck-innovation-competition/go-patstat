@@ -18,6 +18,7 @@ type Tls205TechRel struct {
 	TechRelApplnID int `json:"techRelApplnId" gorm:"primaryKey;column:tech_rel_appln_id;type:integer;default:0;not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls205TechRel) TableName() string {
 	return "tls205_tech_rel"
 }

@@ -20,6 +20,7 @@ type Tls207PersAppln struct {
 	InvtSeqNr  int16 `json:"invtSeqNr" gorm:"primaryKey;column:invt_seq_nr;type:smallint;default:0;not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls207PersAppln) TableName() string {
 	return "tls207_pers_appln"
 }

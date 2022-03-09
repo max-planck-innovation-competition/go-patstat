@@ -44,6 +44,7 @@ type Tls212Citation struct {
 	Category *Tls215CitnCateg `json:"category" gorm:"foreignKey:pat_publn_id,citn_replenished,citn_id;references:pat_publn_id,citn_replenished,citn_id"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls212Citation) TableName() string {
 	return "tls212_citation"
 }

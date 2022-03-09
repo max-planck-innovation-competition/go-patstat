@@ -33,6 +33,7 @@ type Tls209ApplnIpc struct {
 	IpcGenerAuth   string    `json:"ipcGenerAuth" gorm:"column:ipc_gener_auth;type:char(2);default:'';not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls209ApplnIpc) TableName() string {
 	return "tls209_appln_ipc"
 }

@@ -58,6 +58,7 @@ type Tls214NplPubln struct {
 	Citations []*Tls212Citation `json:"citations" gorm:"foreignKey:cited_npl_publn_id"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls214NplPubln) TableName() string {
 	return "tls214_npl_publn"
 }

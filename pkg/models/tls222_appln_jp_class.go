@@ -28,6 +28,7 @@ type Tls222ApplnJpClass struct {
 	JpClassSymbol string `json:"jpClassSymbol" gorm:"primaryKey;column:jp_class_symbol;type:varchar(50);default:'';not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls222ApplnJpClass) TableName() string {
 	return "tls222_appln_jp_class"
 }

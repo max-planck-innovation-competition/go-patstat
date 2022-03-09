@@ -22,6 +22,7 @@ type Tls228DocdbFamCitn struct {
 	CitedDocdbFamilyID int `json:"citedDocdbFamilyId" gorm:"primaryKey;column:cited_docdb_family_id;type:integer;default:0;not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls228DocdbFamCitn) TableName() string {
 	return "tls228_docdb_fam_citn"
 }

@@ -28,6 +28,7 @@ type Tls215CitnCateg struct {
 	RelevantClaim   int16  `json:"relevantClaim" gorm:"primaryKey;column:relevant_claim;type:smallint;default:0;not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls215CitnCateg) TableName() string {
 	return "tls215_citn_categ"
 }

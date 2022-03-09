@@ -21,6 +21,7 @@ type Tls227PersPubln struct {
 	Person *Tls206Person `json:"person" gorm:"foreignKey:person_id;"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls227PersPubln) TableName() string {
 	return "tls227_pers_publn"
 }

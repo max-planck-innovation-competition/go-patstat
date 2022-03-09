@@ -45,6 +45,7 @@ type Tls225DocdbFamCpc struct {
 	CpcDataSource  string    `json:"cpcDataSource" gorm:"column:cpc_data_source;type:char(1);default:'';not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls225DocdbFamCpc) TableName() string {
 	return "tls225_docdb_fam_cpc"
 }

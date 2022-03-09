@@ -21,6 +21,7 @@ type Tls224ApplnCpc struct {
 	CpcClassSymbol string `json:"cpcClassSymbol" gorm:"primaryKey;column:cpc_class_symbol;type:varchar(19);default:'';not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls224ApplnCpc) TableName() string {
 	return "tls224_appln_cpc"
 }

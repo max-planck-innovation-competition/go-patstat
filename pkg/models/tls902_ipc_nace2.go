@@ -24,6 +24,7 @@ type Tls902IpcNace2 struct {
 	Nace2Descr    string `json:"nace2Descr" gorm:"column:nace2_descr;type:varchar(150);default:'';not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls902IpcNace2) TableName() string {
 	return "tls902_ipc_nace2"
 }

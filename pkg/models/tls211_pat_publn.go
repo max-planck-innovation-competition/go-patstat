@@ -46,6 +46,7 @@ type Tls211PatPubln struct {
 	Cited       []*Tls212Citation `json:"cited" gorm:"foreignKey:cited_pat_publn_id"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls211PatPubln) TableName() string {
 	return "tls211_pat_publn"
 }

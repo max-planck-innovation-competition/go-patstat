@@ -17,6 +17,7 @@ type Tls229ApplnNace2 struct {
 	Weight    int    `json:"weight" gorm:"column:weight;type:integer;default:1;not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls229ApplnNace2) TableName() string {
 	return "tls229_appln_nace2"
 }

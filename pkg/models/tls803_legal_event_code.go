@@ -26,6 +26,7 @@ type Tls803LegalEventCode struct {
 	EventCategoryTitle string `json:"eventCategoryTitle" gorm:"column:event_category_title;type:varchar(100);default:'';"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls803LegalEventCode) TableName() string {
 	return "tls803_legal_event_code"
 }

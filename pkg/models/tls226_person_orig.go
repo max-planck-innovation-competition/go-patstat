@@ -63,6 +63,7 @@ type Tls226PersonOrig struct {
 	Role              string `csv:"role" json:"role" gorm:"column:role;type:varchar(2);default:'';not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls226PersonOrig) TableName() string {
 	return "tls226_person_orig"
 }

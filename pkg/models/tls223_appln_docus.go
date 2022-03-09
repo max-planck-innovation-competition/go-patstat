@@ -20,6 +20,7 @@ type Tls223ApplnDocus struct {
 	DocusClassSymbol string `json:"docusClassSymbol" gorm:"primaryKey;column:docus_class_symbol;type:varchar(50);default:'';not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls223ApplnDocus) TableName() string {
 	return "tls223_appln_docus"
 }

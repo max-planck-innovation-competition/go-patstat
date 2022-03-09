@@ -52,6 +52,7 @@ type Tls206Person struct {
 	// Unmodified *Tls226PersonOrig `csv:"-" json:"unmodified" gorm:"foreignKey:person_id;references:person_id;default:null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls206Person) TableName() string {
 	return "tls206_person"
 }

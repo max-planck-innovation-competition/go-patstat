@@ -18,6 +18,7 @@ type Tls904Nuts struct {
 	NutsLabel string `json:"nutsLabel" gorm:"column:nuts_label;type:varchar(250);default:'';"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls904Nuts) TableName() string {
 	return "tls904_nuts"
 }

@@ -17,6 +17,7 @@ type Tls204ApplnPrior struct {
 	PriorApplnSeqNr int16 `json:"priorApplnSeqNr" gorm:"column:prior_appln_seq_nr;type:smallint;default:0;not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls204ApplnPrior) TableName() string {
 	return "tls204_appln_prior"
 }

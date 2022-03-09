@@ -19,6 +19,7 @@ type Tls210ApplnNCls struct {
 	NatClassSymbol string `json:"natClassSymbol" gorm:"primaryKey;column:nat_class_symbol;type:varchar(15);default:'';not null"`
 }
 
+// TableName sets the sql table name for this struct type
 func (m *Tls210ApplnNCls) TableName() string {
 	return "tls210_appln_n_cls"
 }
