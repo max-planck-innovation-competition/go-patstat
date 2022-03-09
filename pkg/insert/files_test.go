@@ -1,4 +1,4 @@
-package read_csv
+package insert
 
 import (
 	"github.com/SbstnErhrdt/env"

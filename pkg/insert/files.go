@@ -1,4 +1,4 @@
-package read_csv
+package insert
 
 import (
 	"encoding/csv"
@@ -12,8 +12,8 @@ import (
 	"time"
 )
 
+// ProcessDirectory processes all files in a directory
 func ProcessDirectory() {
-
 	/*
 		tls201 appln.go
 		tls202 appln_title.go

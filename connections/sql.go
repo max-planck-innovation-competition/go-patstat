@@ -10,6 +10,9 @@ import (
 	"time"
 )
 
+// SQLClient is a gorm sql client
+// must be initialized with ConnectToSQL()
+// can be closed with CloseSqlConnection()
 var SQLClient *gorm.DB
 
 // ConnectToSQL inits a sql client
@@ -36,7 +39,8 @@ func ConnectToSQL() {
 	return
 }
 
-func CloseConnection() {
+// CloseSqlConnection closes a sql client
+func CloseSqlConnection() {
 	log.Println("Try to close connection to sql database")
 	db, err := SQLClient.DB()
 	if err != nil {
