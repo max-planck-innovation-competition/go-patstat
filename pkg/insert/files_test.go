@@ -7,7 +7,7 @@ import (
 )
 
 func TestReadFile(t *testing.T) {
-	env.LoadEnvFiles()
+	env.LoadEnvFiles("../../.env")
 	connections.ConnectToSQL()
 	ReadFile("../../data/tls206_part01.csv")
 }

@@ -50,10 +50,11 @@ func ProcessDirectory() {
 
 // ReadFile reads a file and creates the db entries in batches
 func ReadFile(filePath string) {
+	logger := log.WithFields(log.Fields{"file": filePath})
 	// open file
 	file, err := os.Open(filePath)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 		return
 	}
 	defer func(file *os.File) {
@@ -67,7 +68,7 @@ func ReadFile(filePath string) {
 	// init csv decoder
 	dec, err := csvutil.NewDecoder(csvReader)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 	}
 
 	// init slice
@@ -79,34 +80,42 @@ func ReadFile(filePath string) {
 		if err := dec.Decode(&obj); err == io.EOF {
 			break
 		} else if err != nil {
-			log.Fatal(err)
+			logger.Fatal(err)
 			return
 		}
+		// skip if not a company
+		// if obj.PsnSector != "COMPANY" {
+		// 	continue
+		// }
+
 		// append decoded object to slice
 		data = append(data, &obj)
 		// every 1000 lines create a batch
 		if counter > 0 && counter%1000 == 0 {
-			create(0, data)
+			create(logger, 0, data)
 			// empty slice
 			data = []*models.Tls206Person{}
+			log.WithField("counter", counter).Info("inserted")
 		}
 		counter++
 	}
+	log.Info("successfully finished")
 }
 
-func create(attempt int, data []*models.Tls206Person) {
+func create(logger *log.Entry, attempt int, data []*models.Tls206Person) {
 	if len(data) == 0 {
 		return
 	}
 	// if there are too many attempts
 	if attempt > 10 {
-		log.Fatal("could not create data in db")
+		logger.Fatal("could not create data in db")
 		return
 	}
 	errCreate := connections.SQLClient.Omit(clause.Associations).Create(&data).Error
 	if errCreate != nil {
+		logger.Warn(errCreate)
 		time.Sleep(time.Second * time.Duration(attempt*5))
-		create(attempt+1, data)
+		create(logger, attempt+1, data)
 		return
 	}
 }
