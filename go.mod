@@ -1,6 +1,6 @@
 module github.com/max-planck-innovation-competition/go-patstat
 
-go 1.17
+go 1.18
 
 require (
 	github.com/SbstnErhrdt/env v1.0.2
