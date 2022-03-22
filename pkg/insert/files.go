@@ -99,6 +99,8 @@ func ReadFile(filePath string) {
 		}
 		counter++
 	}
+	// final batch
+	create(logger, 0, data)
 	log.Info("successfully finished")
 }
 
