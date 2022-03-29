@@ -5,6 +5,7 @@ go 1.18
 require (
 	github.com/SbstnErhrdt/env v1.0.2
 	github.com/SbstnErhrdt/go-gorm-all-sql v0.0.0-20220304165614-60cb71bbac2c
+	github.com/jszwec/csvutil v1.6.0
 	github.com/sirupsen/logrus v1.8.1
 	gorm.io/gorm v1.23.2
 )
@@ -22,7 +23,6 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.4 // indirect
 	github.com/joho/godotenv v1.3.0 // indirect
-	github.com/jszwec/csvutil v1.6.0 // indirect
 	github.com/mattn/go-sqlite3 v1.14.12 // indirect
 	golang.org/x/crypto v0.0.0-20220214200702-86341886e292 // indirect
 	golang.org/x/sys v0.0.0-20210823070655-63515b42dcdf // indirect
