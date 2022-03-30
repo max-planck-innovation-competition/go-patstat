@@ -22,5 +22,4 @@ func TestFile2Table(t *testing.T) {
 	// zip
 	tls201TableName, err = File2Table("../../../tls201_part06.zip")
 	ass.Equal(tableName, tls201TableName)
-
 }
