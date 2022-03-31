@@ -9,5 +9,6 @@ import (
 func TestBulkReadFile(t *testing.T) {
 	env.LoadEnvFiles("../../.env")
 	connections.ConnectToSQL()
-	BulkReadFile("/ingest/tls201_part03.csv")
+	BulkReadFile("/ingest/tls206_part01.csv")
+	BulkReadFile("/ingest/tls206_part02.csv")
 }
