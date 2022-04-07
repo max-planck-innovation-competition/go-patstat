@@ -9,6 +9,22 @@ import (
 func TestBulkReadFile(t *testing.T) {
 	env.LoadEnvFiles("../../.env")
 	connections.ConnectToSQL()
-	BulkReadFile("/ingest/tls206_part01.csv")
-	BulkReadFile("/ingest/tls206_part02.csv")
+
+	/*
+		err := connections.SQLClient.Migrator().DropTable(&models.Tls227PersPubln{})
+		if err != nil {
+			panic(err)
+		}
+		err = connections.SQLClient.Migrator().CreateTable(&models.Tls227PersPubln{})
+		if err != nil {
+			panic(err)
+		}
+
+	*/
+	BulkReadFile("/ingest/tls211_part01.csv")
+	BulkReadFile("/ingest/tls211_part02.csv")
 }
+
+/*
+
+ */
