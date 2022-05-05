@@ -32,3 +32,9 @@ found [here](https://documents.epo.org/projects/babylon/eponot.nsf/0/9BB068EEB37
 * [MySQL Docker-Compose](./deployments/mysql)
 * [PostgreSQL Docker-Compose](./deployments/postgres)
 * [SQLite Docker-Compose](./deployments/sqlite)
+
+## Go Module
+
+```shell
+go get -u github.com/max-planck-innovation-competition/go-patstat
+```
