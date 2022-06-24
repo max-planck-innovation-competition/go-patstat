@@ -17,6 +17,17 @@ func BulkReadFile(filePath string) {
 	}
 	logger.WithField("table_name", tableName).Info("sql table name")
 	// copy csv
+	err = BulkInsert(tableName, filePath)
+	if err != nil {
+		logger.Fatal(err)
+		return
+	}
+	logger.Info("finished copying csv")
+	return
+}
+
+func BulkInsert(tableName string, filePath string) (err error) {
+	logger := log.WithFields(log.Fields{"file": filePath, "table": tableName})
 	logger.Info("start copying csv")
 	err = connections.SQLClient.Exec(`COPY ` + tableName + ` FROM '` + filePath + `' WITH CSV HEADER;`).Error
 	if err != nil {
@@ -24,4 +35,5 @@ func BulkReadFile(filePath string) {
 		return
 	}
 	logger.Info("successfully finished")
+	return
 }
