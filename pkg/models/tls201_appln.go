@@ -27,7 +27,7 @@ CREATE TABLE tls201_appln (
     earliest_publn_year smallint DEFAULT 9999 NOT NULL,
     earliest_pat_publn_id integer DEFAULT 0 NOT NULL,
     granted char(1) DEFAULT 'N' NOT NULL,
-    doc_db_family_id integer DEFAULT 0 NOT NULL,
+    docdb_family_id integer DEFAULT 0 NOT NULL,
     inpadoc_family_id integer DEFAULT 0 NOT NULL,
     docdb_family_size smallint DEFAULT 0 NOT NULL,
     nb_citing_docdb_fam smallint DEFAULT 0 NOT NULL,
@@ -77,7 +77,7 @@ type Tls201Appln struct {
 	EarliestPublnYear  int       `json:"earliestPublnYear" gorm:"column:earliest_publn_year;type:smallint;default:9999;not null"`
 	EarliestPatPublnId int       `json:"earliestPatPublnId" gorm:"column:earliest_pat_publn_id;type:integer;default:0;not null"`
 	Granted            string    `json:"granted" gorm:"column:granted;type:char(1);default:'N';not null"`
-	DocDbFamilyId      int       `json:"docDbFamilyId" gorm:"column:doc_db_family_id;type:integer;default:0;not null"`
+	DocDbFamilyId      int       `json:"docDbFamilyId" gorm:"column:docdb_family_id;type:integer;default:0;not null"`
 	InpadocFamilyId    int       `json:"inpadocFamilyId" gorm:"column:inpadoc_family_id;type:integer;default:0;not null"`
 	DocdbFamilySize    int       `json:"docdbFamilySize" gorm:"column:docdb_family_size;type:smallint;default:0;not null"`
 	NbCitingDocdbFam   int       `json:"nbCitingDocdbFam" gorm:"column:nb_citing_docdb_fam;type:smallint;default:0;not null"`
