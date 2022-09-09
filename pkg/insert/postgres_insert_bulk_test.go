@@ -21,8 +21,7 @@ func TestBulkReadFile(t *testing.T) {
 		}
 
 	*/
-	BulkReadFile("/ingest/tls211_part01.csv")
-	BulkReadFile("/ingest/tls211_part02.csv")
+	BulkReadFile("/ingest/tls228_part01.csv")
 }
 
 /*
