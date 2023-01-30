@@ -56,7 +56,7 @@ CREATE TABLE tls201_appln (
 // From a database structure point of view, this table is very important because it links to
 // many other database tables via the attribute APPLN_ID.
 type Tls201Appln struct {
-	ApplnId            int       `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
+	ApplnId            int       `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;autoIncrement"`
 	ApplnAuth          string    `json:"applnAuth" gorm:"column:appln_auth;type:char(2);default:'';not null"`
 	ApplnNr            string    `json:"applnNr" gorm:"column:appln_nr;type:varchar(15);default:'';not null"`
 	ApplnKind          string    `json:"applnKind" gorm:"column:appln_kind;type:char(2);default:'';not null"`

@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/SbstnErhrdt/env v1.0.2
-	github.com/SbstnErhrdt/go-gorm-all-sql v0.0.0-20220913081825-4ba84455e2a0
+	github.com/SbstnErhrdt/go-gorm-all-sql v0.0.0-20230129181717-d17141e8a055
 	github.com/jszwec/csvutil v1.7.1
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.0

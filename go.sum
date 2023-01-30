@@ -2,6 +2,8 @@ github.com/SbstnErhrdt/env v1.0.2 h1:tcQz2dcCAswuzjQRG1nMrIfCce7OviTkUP3XZncMyNA
 github.com/SbstnErhrdt/env v1.0.2/go.mod h1:RmwLgUAr3ghbMkGC5yueAVvV+Wn8cJ4wvWgbmlJ2tcg=
 github.com/SbstnErhrdt/go-gorm-all-sql v0.0.0-20220913081825-4ba84455e2a0 h1:y9i1sMCpfezjXnZyuXwXjxVbyNgSDGv//Qnjo2R81GA=
 github.com/SbstnErhrdt/go-gorm-all-sql v0.0.0-20220913081825-4ba84455e2a0/go.mod h1:oMdDZQZr289nDXobd8AaCakYcTteVAStx/Kym9M17jE=
+github.com/SbstnErhrdt/go-gorm-all-sql v0.0.0-20230129181717-d17141e8a055 h1:mYYX+IUPnG3dTlpaMh4hpW+KjPh9ZP4Ku8FxfjlTyeA=
+github.com/SbstnErhrdt/go-gorm-all-sql v0.0.0-20230129181717-d17141e8a055/go.mod h1:TRn2tU3mpxagdf1HXct7AKDpqEfVsu40V9SC9yU64XA=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
