@@ -12,7 +12,7 @@ CREATE TABLE tls202_appln_title (
 // This table contains the English title of the application when available. In case there is no
 // English title available, another language will be used if available.
 type Tls202ApplnTitle struct {
-	ApplnId      int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
+	ApplnId      int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;autoIncrement"`
 	ApplnTitleLg string `json:"applnTitleLg" gorm:"column:appln_title_lg;type:char(2);default:'';not null"`
 	ApplnTitle   string `json:"applnTitle" gorm:"column:appln_title;type:text;not null"`
 }
