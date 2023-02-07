@@ -9,11 +9,15 @@ import (
 func TestBulkReadFile(t *testing.T) {
 	connections.ConnectToSQL()
 	connections.SQLClient.Config.DisableForeignKeyConstraintWhenMigrating = true
-	err := connections.SQLClient.AutoMigrate(&models.Tls224ApplnCpc{})
+	err := connections.SQLClient.AutoMigrate(&models.Tls202ApplnTitle{})
 	if err != nil {
 		t.Fatal(err)
 	}
-	BulkReadFile("/var/lib/postgresql/data/ingest/tls224_part01.csv")
-	BulkReadFile("/var/lib/postgresql/data/ingest/tls224_part02.csv")
-	BulkReadFile("/var/lib/postgresql/data/ingest/tls224_part03.csv")
+	err = connections.SQLClient.AutoMigrate(&models.Tls203ApplnAbstr{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	// BulkReadFile("/var/lib/postgresql/data/ingest/tls224_part01.csv")
+	// BulkReadFile("/var/lib/postgresql/data/ingest/tls224_part02.csv")
+	// BulkReadFile("/var/lib/postgresql/data/ingest/tls224_part03.csv")
 }
