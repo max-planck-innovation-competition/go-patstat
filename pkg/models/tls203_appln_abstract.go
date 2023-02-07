@@ -10,9 +10,9 @@ package models
 // This table contains the English language abstract, if available. If there is no abstract in
 // English, then it contains the most recent abstract in another language.
 type Tls203ApplnAbstr struct {
-	ApplnId         int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
-	ApplnAbstractLg string `json:"applnTitleLg" gorm:"column:appln_title_lg;type:char(2);default:'';not null"`
-	ApplnAbstract   string `json:"applnTitle" gorm:"column:appln_title;type:text;not null"`
+	ApplnId         int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;autoIncrement"`
+	ApplnAbstractLg string `json:"applnTitleLg" gorm:"column:appln_abstract_lg;type:char(2);default:'';not null"`
+	ApplnAbstract   string `json:"applnTitle" gorm:"column:appln_abstract;type:text;not null"`
 }
 
 // TableName sets the sql table name for this struct type
