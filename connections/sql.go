@@ -31,7 +31,8 @@ func ConnectToSQL() {
 		log.Panic(err)
 		return
 	}
-	db.SetConnMaxLifetime(time.Minute * 5)
+	db.SetConnMaxLifetime(time.Minute * 20) // needs to be long enough for the whole request
+	db.SetConnMaxIdleTime(time.Minute * 20) // needs to be long enough for the whole request
 	log.Info("Successfully connected to sql database")
 	if strings.ToUpper(os.Getenv("ENVIRONMENT")) != "PRODUCTION" {
 		SQLClient.Config.Logger = logger.Default.LogMode(logger.Info)
