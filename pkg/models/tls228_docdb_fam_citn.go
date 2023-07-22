@@ -18,7 +18,7 @@ CREATE TABLE tls228_docdb_fam_citn (
 // application(s) of another family, then this is counted as one citation between these 2
 // families.
 type Tls228DocdbFamCitn struct {
-	DocdbFamilyID      int `json:"docdbFamilyId" gorm:"primaryKey;column:docdb_family_id;type:integer;default:0;not null"`
+	DocdbFamilyID      int `json:"docdbFamilyId" gorm:"primaryKey;column:docdb_family_id;type:integer;not null"`
 	CitedDocdbFamilyID int `json:"citedDocdbFamilyId" gorm:"primaryKey;column:cited_docdb_family_id;type:integer;default:0;not null"`
 }
 

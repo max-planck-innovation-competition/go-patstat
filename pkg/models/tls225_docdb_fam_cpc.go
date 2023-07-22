@@ -33,7 +33,7 @@ CREATE TABLE tls225_docdb_fam_cpc (
 // same DOCDB family by one or more patent offices.
 // This table contains detailed information for each assignment.
 type Tls225DocdbFamCpc struct {
-	DocdbFamilyID  int       `json:"docdbFamilyId" gorm:"primaryKey;column:docdb_family_id;type:integer;default:0;not null"`
+	DocdbFamilyID  int       `json:"docdbFamilyId" gorm:"primaryKey;column:docdb_family_id;type:integer;not null"`
 	CpcClassSymbol string    `json:"cpcClassSymbol" gorm:"primaryKey;column:cpc_class_symbol;type:varchar(19);default:'';not null"`
 	CpcGenerAuth   string    `json:"cpcGenerAuth" gorm:"primaryKey;column:cpc_gener_auth;type:varchar(2);default:'';not null"`
 	CpcVersion     time.Time `json:"cpcVersion" gorm:"column:cpc_version;type:date;default:'9999-12-31';not null"`

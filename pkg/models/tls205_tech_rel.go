@@ -14,7 +14,7 @@ CREATE TABLE tls205_tech_rel (
 // statistical point of view you should consider them equal to the priority and continuation
 // relations established in TLS204_APPLN_PRIOR and in TLS216_APPLN_CONTN.
 type Tls205TechRel struct {
-	ApplnID        int `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
+	ApplnID        int `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;not null"`
 	TechRelApplnID int `json:"techRelApplnId" gorm:"primaryKey;column:tech_rel_appln_id;type:integer;default:0;not null"`
 }
 

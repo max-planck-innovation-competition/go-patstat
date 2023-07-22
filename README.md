@@ -43,3 +43,9 @@ found [here](https://documents.epo.org/projects/babylon/eponot.nsf/0/9BB068EEB37
 ```shell
 go get -u github.com/max-planck-innovation-competition/go-patstat
 ```
+
+## Binary
+
+```shell
+./patstat install --db=patstat_2023_spring --directory=./
+```

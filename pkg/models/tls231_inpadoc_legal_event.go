@@ -52,7 +52,7 @@ CREATE TABLE tls231_inpadoc_legal_event (
 // withdrawal of the application, patent applications entering the national phase, patents which
 // have been opposed or revoked, etc.
 type Tls231InpadocLegalEvent struct {
-	EventID             int       `json:"eventId" gorm:"primaryKey;column:event_id;type:integer;default:0;not null"`
+	EventID             int       `json:"eventId" gorm:"primaryKey;column:event_id;type:integer;not null;"`
 	ApplnID             int       `json:"applnId" gorm:"column:appln_id;type:integer;default:0;not null"`
 	EventSeqNr          int16     `json:"eventSeqNr" gorm:"column:event_seq_nr;type:smallint;default:0;"`
 	EventType           string    `json:"eventType" gorm:"column:event_type;type:char(3);default:'';"`

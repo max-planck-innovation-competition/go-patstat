@@ -2,12 +2,17 @@ package main
 
 import (
 	"flag"
+	"github.com/SbstnErhrdt/env"
 	"github.com/max-planck-innovation-competition/go-patstat/connections"
 	"github.com/max-planck-innovation-competition/go-patstat/pkg/insert"
 	"github.com/max-planck-innovation-competition/go-patstat/pkg/install"
 	"github.com/rs/zerolog/log"
 	"os"
 )
+
+func init() {
+	env.LoadEnvFiles()
+}
 
 // DefaultDbName is the default database name
 var DefaultDbName = "patstat"

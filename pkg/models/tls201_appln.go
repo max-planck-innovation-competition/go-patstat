@@ -59,7 +59,7 @@ CREATE TABLE tls201_appln (
 // Deprecated attributes removed
 // (APPLN_NR_EPODOC from table TLS201_APPLN, and EVENT_IMPACT from table TLS803_LEGAL_EVENT_CODE).
 type Tls201Appln struct {
-	ApplnId            int       `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;autoIncrement"`
+	ApplnId            int       `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;"`
 	ApplnAuth          string    `json:"applnAuth" gorm:"column:appln_auth;type:char(2);default:'';not null"`
 	ApplnNr            string    `json:"applnNr" gorm:"column:appln_nr;type:varchar(15);default:'';not null"`
 	ApplnKind          string    `json:"applnKind" gorm:"column:appln_kind;type:char(2);default:'';not null"`

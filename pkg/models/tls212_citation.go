@@ -30,7 +30,7 @@ CREATE TABLE tls212_citation (
 // as well as the citation generating authority (e.g. search authority) and the procedural step
 // in which the citation was created (e.g. search report or opposition procedure).
 type Tls212Citation struct {
-	PatPublnID      int    `json:"patPublnId" gorm:"primaryKey;column:pat_publn_id;type:integer;default:0;not null"`
+	PatPublnID      int    `json:"patPublnId" gorm:"primaryKey;column:pat_publn_id;type:integer;not null"`
 	CitnReplenished int    `json:"citnReplenished" gorm:"primaryKey;column:citn_replenished;type:integer;default:0;not null"`
 	CitnID          int16  `json:"citnId" gorm:"primaryKey;column:citn_id;type:smallint;default:0;not null"`
 	CitnOrigin      string `json:"citnOrigin" gorm:"column:citn_origin;type:char(3);default:'';not null"`

@@ -17,7 +17,7 @@ CREATE TABLE tls216_appln_contn (
 // patent applications. This table should be considered as a priority-like relationship similar to
 // the TLS204_APPLN_PRIOR table.
 type Tls216ApplnContn struct {
-	ApplnID       int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
+	ApplnID       int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;not null"`
 	ParentApplnID int    `json:"parentApplnId" gorm:"primaryKey;column:parent_appln_id;type:integer;default:0;not null"`
 	ContnType     string `json:"contnType" gorm:"column:contn_type;type:char(3);default:'';not null"`
 }

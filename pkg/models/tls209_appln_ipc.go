@@ -24,7 +24,7 @@ CREATE TABLE tls209_appln_ipc (
 // worry about reclassifications because older applications will always be classified according
 // to the latest IPC version.
 type Tls209ApplnIpc struct {
-	ApplnID        int       `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
+	ApplnID        int       `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;not null"`
 	IpcClassSymbol string    `json:"ipcClassSymbol" gorm:"primaryKey;column:ipc_class_symbol;type:varchar(15);default:'';not null"`
 	IpcClassLevel  string    `json:"ipcClassLevel" gorm:"column:ipc_class_level;type:char(1);default:'';not null"`
 	IpcVersion     time.Time `json:"ipcVersion" gorm:"column:ipc_version;type:date;default:'9999-12-31';not null"`
