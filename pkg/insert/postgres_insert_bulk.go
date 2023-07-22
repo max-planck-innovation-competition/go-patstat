@@ -1,14 +1,13 @@
 package insert
 
 import (
-	"fmt"
 	"github.com/max-planck-innovation-competition/go-patstat/connections"
 	"github.com/rs/zerolog/log"
 	"os"
 	"path/filepath"
 )
 
-func BulkReadDirectory(dirPath string) (files []string, err error) {
+func BulkReadDirectory(dirPath, postGresPath string) (files []string, err error) {
 	files = []string{}
 	// walk over the directory
 	err = filepath.Walk(dirPath,
@@ -17,10 +16,20 @@ func BulkReadDirectory(dirPath string) (files []string, err error) {
 				log.Err(err).Msg("error while walking over directory")
 				return err
 			}
-			fmt.Println(path, info.Size())
+			// skip child directories
+			if path != "." && info.IsDir() {
+				log.Info().Str("dir", path).Msg("skipping directory")
+				return filepath.SkipDir
+			}
 			// check if the file is a csv
 			if filepath.Ext(path) == ".csv" {
+				log.Info().Str("file", path).Msg("found file")
+				// add path prefix
+				path = filepath.Join(postGresPath, path)
+				// append to files
 				files = append(files, path)
+			} else {
+				log.Info().Str("file", path).Msg("skipping file")
 			}
 			return nil
 		})
@@ -64,15 +73,15 @@ func BulkInsert(tableName string, filePath string) (err error) {
 	return
 }
 
-func ProcessDirectory(fileDirectory string) {
+func ProcessDirectory(fileDirectoryPath, postgresDirectoryPath string) {
 	// read all files in the directory
-	files, err := BulkReadDirectory(fileDirectory)
+	filePaths, err := BulkReadDirectory(fileDirectoryPath, postgresDirectoryPath)
 	if err != nil {
 		log.Fatal().Msg(err.Error())
 		return
 	}
 	// read each file
-	for _, file := range files {
-		BulkInsertFile(file)
+	for _, filePath := range filePaths {
+		BulkInsertFile(filePath)
 	}
 }

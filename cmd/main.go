@@ -15,10 +15,12 @@ func init() {
 }
 
 // DefaultDbName is the default database name
-var DefaultDbName = "patstat"
+var DefaultDbName = "patstat_2023_spring"
 
 // DefaultDirectoryPath is the default directory path of the data
 var DefaultDirectoryPath = "."
+
+var DefaultPostgresDirectoryPath = "/var/lib/postgresql/data/ingest/"
 
 func main() {
 	log.Debug().
@@ -54,33 +56,48 @@ func main() {
 }
 
 func installMode() {
-	log.Info().Msg("Start Installation")
 	// get flag db name
 	flag.StringVar(&DefaultDbName, "db", "patstat", "database name")
 	flag.StringVar(&DefaultDirectoryPath, "directory", ".", "the directory path to the data")
+	flag.StringVar(&DefaultPostgresDirectoryPath, "postgres-directory", "/var/lib/postgresql/data/ingest/", "the directory path to the data")
+	log.Info().
+		Str("db", DefaultDbName).
+		Str("directory", DefaultDirectoryPath).
+		Str("postgres-directory", DefaultPostgresDirectoryPath).
+		Msg("Start Installation")
+
 	// install
 	install.CreateDatabase(DefaultDbName)
 	install.CreateTables()
 	// insert data
-	insert.ProcessDirectory(DefaultDirectoryPath)
+	insert.ProcessDirectory(DefaultDirectoryPath, DefaultPostgresDirectoryPath)
 	// create indexes
 	install.CreateTableConstraints()
 	log.Info().Msg("End Installation")
 }
 
 func insertMode() {
-	log.Info().Msg("Start Insertion")
 	// get flag db name
-	flag.StringVar(&DefaultDbName, "db", "patstat", "database name")
+	flag.StringVar(&DefaultDbName, "db", "patstat_2023_spring", "database name")
 	flag.StringVar(&DefaultDirectoryPath, "directory", ".", "the directory path to the data")
+	flag.StringVar(&DefaultPostgresDirectoryPath, "postgres-directory", "/var/lib/postgresql/data/ingest/", "the directory path to the data")
+	flag.Parse()
+	log.Info().
+		Str("db", DefaultDbName).
+		Str("directory", DefaultDirectoryPath).
+		Str("postgres-directory", DefaultPostgresDirectoryPath).
+		Msg("Start Insertion")
 	// insert data
-	insert.ProcessDirectory(DefaultDirectoryPath)
+	insert.ProcessDirectory(DefaultDirectoryPath, DefaultPostgresDirectoryPath)
 	log.Info().Msg("End Insertion")
 }
 
 func uninstallMode() {
-	log.Info().Msg("Start uninstall")
+	log.Info().
+		Str("db", DefaultDbName).
+		Msg("Start uninstall")
 	flag.StringVar(&DefaultDbName, "db", "patstat", "database name")
+	flag.Parse()
 	install.Uninstall(DefaultDbName)
 	log.Info().Msg("End uninstall")
 }

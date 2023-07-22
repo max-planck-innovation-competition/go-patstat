@@ -8,7 +8,7 @@ import (
 
 // Uninstall deletes all migrateTables and data from the database
 func Uninstall(dbName string) {
-	log.Info().Msg("Start De installation")
+	log.Info().Str("dbName", dbName).Msg("Start uninstall installation")
 	connections.ConnectToSQL()
 
 	// check if db exists

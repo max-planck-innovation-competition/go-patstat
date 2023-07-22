@@ -3,10 +3,11 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/max-planck-innovation-competition/go-patstat)](https://goreportcard.com/report/github.com/max-planck-innovation-competition/go-patstat)
 [![Go Reference](https://pkg.go.dev/badge/github.com/max-planck-innovation-competition/go-patstat.svg)](https://pkg.go.dev/github.com/max-planck-innovation-competition/go-patstat)
 
+Updated to Patstat Version Spring 2023
+
 This repository generates the PATSTAT Database using Object Relational Mapping (ORM) and Docker.
 
-This allows for creation of PATSTAT in:
-
+This allows for creation of PATSTAT for various databases:
 * MySQL
 * PostgreSQL
 * SQLite
@@ -16,11 +17,6 @@ This allows for creation of PATSTAT in:
 Under development
 
 **⚠️ Experimental - Not ready for production.**
-
-Tested with:
-* Fall 2019
-* Spring 2023
-
 
 ## Author
 
@@ -34,9 +30,11 @@ found [here](https://documents.epo.org/projects/babylon/eponot.nsf/0/9BB068EEB37
 
 ## Deployments
 
-* [MySQL Docker-Compose](./deployments/mysql)
 * [PostgreSQL Docker-Compose](./deployments/postgres)
+
+**TODO:**
 * [SQLite Docker-Compose](./deployments/sqlite)
+* [MySQL Docker-Compose](./deployments/mysql)
 
 ## Go Module
 
@@ -46,6 +44,27 @@ go get -u github.com/max-planck-innovation-competition/go-patstat
 
 ## Binary
 
+1) Download Patstat via [EPO Bulk Data Download](https://publication-bdds.apps.epo.org/raw-data/products)
+2) Set-Up Database Docker e.g. Postgres [docker-compose.yml](deployments%2Fpostgres%2Fdocker-compose.yml)
+3) Move Patstat Data to Database Folder
+4) Unzip Patstat Data
 ```shell
-./patstat install --db=patstat_2023_spring --directory=./
+unzip *.zip
+# wait for unzip of first files
+unzip tls*.zip
+```
+5) Create `.env` file with following content
+```
+SQL_HOST=localhost
+SQL_USER=postgres
+SQL_PASSWORD=changeme
+SQL_PORT=5432
+SQL_DATABASE=patstat
+SQL_TYPE=POSTGRES
+```
+
+6) Run Patstat installation Script
+
+```shell
+./patstat install --db=patstat_2023_spring --directory=./ --post
 ```
