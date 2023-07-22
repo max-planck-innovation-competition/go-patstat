@@ -17,7 +17,7 @@ func TestBulkReadFile(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	// BulkReadFile("/var/lib/postgresql/data/ingest/tls224_part01.csv")
-	// BulkReadFile("/var/lib/postgresql/data/ingest/tls224_part02.csv")
-	// BulkReadFile("/var/lib/postgresql/data/ingest/tls224_part03.csv")
+	BulkInsertFile("/var/lib/postgresql/data/ingest/tls224_part01.csv")
+	// BulkInsertFile("/var/lib/postgresql/data/ingest/tls224_part02.csv")
+	// BulkInsertFile("/var/lib/postgresql/data/ingest/tls224_part03.csv")
 }

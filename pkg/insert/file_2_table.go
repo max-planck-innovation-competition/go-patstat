@@ -73,9 +73,10 @@ func File2Table(filePath string) (tableName string, err error) {
 	case "tls222":
 		obj := models.Tls222ApplnJpClass{}
 		return obj.TableName(), nil
-	case "tls223":
-		obj := models.Tls223ApplnDocus{}
-		return obj.TableName(), nil
+		// Deprecated
+	// case "tls223":
+	//	obj := models.Tls223ApplnDocus{}
+	//	return obj.TableName(), nil
 	case "tls224":
 		obj := models.Tls224ApplnCpc{}
 		return obj.TableName(), nil

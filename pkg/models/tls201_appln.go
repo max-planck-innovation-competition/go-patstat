@@ -55,6 +55,9 @@ CREATE TABLE tls201_appln (
 // patent document. E.g.: application authority, application number and application filing date.
 // From a database structure point of view, this table is very important because it links to
 // many other database tables via the attribute APPLN_ID.
+// 2022 Autumn:
+// Deprecated attributes removed
+// (APPLN_NR_EPODOC from table TLS201_APPLN, and EVENT_IMPACT from table TLS803_LEGAL_EVENT_CODE).
 type Tls201Appln struct {
 	ApplnId            int       `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;autoIncrement"`
 	ApplnAuth          string    `json:"applnAuth" gorm:"column:appln_auth;type:char(2);default:'';not null"`
@@ -62,7 +65,6 @@ type Tls201Appln struct {
 	ApplnKind          string    `json:"applnKind" gorm:"column:appln_kind;type:char(2);default:'';not null"`
 	ApplnFilingDate    time.Time `json:"applnFilingDate" gorm:"column:appln_filing_date;type:date;default:'9999-12-31';not null"`
 	ApplnFilingYear    int       `json:"applnFilingYear" gorm:"column:appln_filing_year;type:smallint;default:9999;not null"`
-	ApplnNrEpodoc      string    `json:"applnNrEpodoc" gorm:"column:appln_nr_epodoc;type:varchar(20);default:'';not null"`
 	ApplnNrOriginal    string    `json:"applnNrOriginal" gorm:"column:appln_nr_original;type:varchar(100);default:'';not null"`
 	IprType            string    `json:"iprType" gorm:"column:ipr_type;type:char(2);default:'';not null"`
 	ReceivingOffice    string    `json:"receivingOffice" gorm:"column:receiving_office;type:char(2);default:'';not null"`
@@ -99,12 +101,14 @@ type Tls201Appln struct {
 	FamilyCitations           []*Tls228DocdbFamCitn      `json:"familyCitations" gorm:"foreignKey:docdb_family_id"`
 	FamilyCited               []*Tls228DocdbFamCitn      `json:"familyCited" gorm:"foreignKey:cited_docdb_family_id"`
 	JpClasses                 []*Tls222ApplnJpClass      `json:"jpClasses" gorm:"foreignKey:appln_id"`
-	UsClasses                 []*Tls223ApplnDocus        `json:"usClasses" gorm:"foreignKey:appln_id"`
 	CpcClasses                []*Tls224ApplnCpc          `json:"cpcClasses" gorm:"foreignKey:appln_id"`
 	FamilyCpcClasses          []*Tls225DocdbFamCpc       `json:"familyCpcClasses" gorm:"foreignKey:docdb_family_id"`
 	NaceCodes                 []*Tls229ApplnNace2        `json:"naceCodes" gorm:"foreignKey:appln_id"`
 	TechnicalFields           []*Tls230ApplnTechnField   `json:"technicalFields" gorm:"foreignKey:appln_id"`
 	LegalEvents               []*Tls231InpadocLegalEvent `json:"legalEvents" gorm:"foreignKey:appln_id"`
+	// Deprecated
+	// UsClasses                 []*Tls223ApplnDocus        `json:"usClasses" gorm:"foreignKey:appln_id"` // Deprecated
+	// ApplnNrEpodoc      string    `json:"applnNrEpodoc" gorm:"column:appln_nr_epodoc;type:varchar(20);default:'';not null"` // Deprecated
 }
 
 // TableName sets the sql table name for this struct type

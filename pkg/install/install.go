@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"github.com/max-planck-innovation-competition/go-patstat/connections"
 	"github.com/max-planck-innovation-competition/go-patstat/pkg/models"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
-func checkIfDBExists() (exists bool, err error) {
+func checkIfDBExists(dbName string) (exists bool, err error) {
 	// check if db exists
 	stmt := fmt.Sprintf("SELECT * FROM pg_database WHERE datname = '%s';", dbName)
 	rs := connections.SQLClient.Raw(stmt)
 	if rs.Error != nil {
-		log.Panic(rs.Error)
+		log.Err(rs.Error).Msg("error while checking if db exists")
 		return
 	}
 
@@ -32,56 +32,57 @@ func checkIfDBExists() (exists bool, err error) {
 	return true, nil
 }
 
-// Install creates all tables in the database
-func Install() {
-	log.Println("Start Installation")
+// CreateDatabase the database
+func CreateDatabase(dbName string) {
+	log.Info().Msg("Start Installation")
 	connections.ConnectToSQL()
 
 	// check if db exists
-	exists, err := checkIfDBExists()
+	log.Info().Msg("check if database exists before installation")
+	exists, err := checkIfDBExists(dbName)
 	if err != nil {
-		log.Panic(err)
+		log.Err(err).Msg("error while checking if db exists")
 		return
 	}
+	log.Info().Msg("database exists: " + fmt.Sprintf("%t", exists))
 
 	// if not create it
 	if !exists {
+		log.Info().Str("dbName", dbName).Msg("creating new db")
 		stmt := fmt.Sprintf("CREATE DATABASE %s;", dbName)
 		if rs := connections.SQLClient.Exec(stmt); rs.Error != nil {
-			log.Panic(rs.Error)
+			log.Err(err).Str("dbName", dbName).Msg("error while creating new db")
 			return
 		}
-	}
-
-	// create the tables
-	connections.SQLClient.Config.DisableForeignKeyConstraintWhenMigrating = true
-	err = tables()
-	if err != nil {
-		log.Panic(err)
-		return
-	}
-
-	// add constraints to the tables
-	connections.SQLClient.Config.DisableForeignKeyConstraintWhenMigrating = false
-	err = tables()
-	if err != nil {
-		log.Panic(err)
-		return
-	}
-
-	// close db connection
-	sql, err := connections.SQLClient.DB()
-	defer func() {
-		_ = sql.Close()
-	}()
-	if err != nil {
-		log.Panic(err)
-		return
+		log.Info().Str("dbName", dbName).Msg("successfully created new db")
 	}
 }
 
-func tables() (err error) {
-	// all tables
+func CreateTableConstraints() {
+	log.Info().Msg("adding table constraints")
+	// add constraints to the migrateTables
+	connections.SQLClient.Config.DisableForeignKeyConstraintWhenMigrating = false
+	err := migrateTables()
+	if err != nil {
+		log.Panic().AnErr("err", err).Msg("error while adding the table constraints migrateTables")
+		return
+	}
+	return
+}
+
+func CreateTables() {
+	// create the migrateTables
+	connections.SQLClient.Config.DisableForeignKeyConstraintWhenMigrating = true
+	err := migrateTables()
+	if err != nil {
+		log.Panic().AnErr("err", err).Msg("error while creating migrateTables")
+		return
+	}
+	return
+}
+
+func migrateTables() (err error) {
+	// all migrateTables
 	err = connections.SQLClient.AutoMigrate(
 		&models.Tls904Nuts{},
 		&models.Tls902IpcNace2{},

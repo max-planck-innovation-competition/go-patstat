@@ -5,62 +5,30 @@ import (
 	"github.com/jszwec/csvutil"
 	"github.com/max-planck-innovation-competition/go-patstat/connections"
 	"github.com/max-planck-innovation-competition/go-patstat/pkg/models"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 	"gorm.io/gorm/clause"
 	"io"
 	"os"
 	"time"
 )
 
-// ProcessDirectory processes all files in a directory
-func ProcessDirectory() {
-	/*
-		tls201 appln.go
-		tls202 appln_title.go
-		tls203 appln_abstract.go
-		tls204 appln_prior.go
-		tls205 tech_rel.go
-		tls206 person.go
-		tls207 pers_appln.go
-		tls209 appln_ipc.go
-		tls210 appln_n_cls.go
-		tls211 pat_publn.go
-		tls212 citation.go
-		tls214 npl_publn.go
-		tls215 citn_categ.go
-		tls216 appln_contn.go
-		tls222 appln_jp_class.go
-		tls223 appln_docus.go
-		tls224 appln_cpc.go
-		tls225 docdb_fam_cpc.go
-		tls226 person_orig.go
-		tls227 pers_publn.go
-		tls228 docdb_fam_citn.go
-		tls229 appln_nace2.go
-		tls230 appln_techn_field.go
-		tls231 inpadoc_legal_event.go
-		tls801 country.go
-		tls803 legal_event_code.go
-		tls901 techn_field_ipc.go
-		tls902 ipc_nace2.go
-		tls904 nuts.go
-	*/
-
-}
-
 // ReadFile reads a file and creates the db entries in batches
 func ReadFile(filePath string) {
-	logger := log.WithFields(log.Fields{"file": filePath})
+	logger := log.With().
+		Str("file", filePath).
+		Logger()
+	logger.Info().Msg("reading file")
 	// open file
 	file, err := os.Open(filePath)
 	if err != nil {
-		logger.Fatal(err)
+		logger.Err(err).Msg("failed to open file")
 		return
 	}
 	defer func(file *os.File) {
 		err := file.Close()
 		if err != nil {
-
+			logger.Err(err).Msg("failed to close file")
 		}
 	}(file)
 	// init reader
@@ -68,7 +36,7 @@ func ReadFile(filePath string) {
 	// init csv decoder
 	dec, err := csvutil.NewDecoder(csvReader)
 	if err != nil {
-		logger.Fatal(err)
+		logger.Err(err).Msg("failed to decode file")
 	}
 
 	// init slice
@@ -80,7 +48,7 @@ func ReadFile(filePath string) {
 		if err := dec.Decode(&obj); err == io.EOF {
 			break
 		} else if err != nil {
-			logger.Fatal(err)
+			logger.Err(err).Msg("failed to open file")
 			return
 		}
 		// skip if not a company
@@ -92,30 +60,30 @@ func ReadFile(filePath string) {
 		data = append(data, &obj)
 		// every 1000 lines create a batch
 		if counter > 0 && counter%1000 == 0 {
-			create(logger, 0, data)
+			create(&logger, 0, data)
 			// empty slice
 			data = []*models.Tls206Person{}
-			log.WithField("counter", counter).Info("inserted")
+			log.Info().Int("counter", counter).Msg("inserted")
 		}
 		counter++
 	}
 	// final batch
-	create(logger, 0, data)
-	log.Info("successfully finished")
+	create(&logger, 0, data)
+	logger.Info().Msg("successfully finished")
 }
 
-func create(logger *log.Entry, attempt int, data []*models.Tls206Person) {
+func create(logger *zerolog.Logger, attempt int, data []*models.Tls206Person) {
 	if len(data) == 0 {
 		return
 	}
 	// if there are too many attempts
 	if attempt > 10 {
-		logger.Fatal("could not create data in db")
+		logger.Fatal().Msg("could not create data in db")
 		return
 	}
 	errCreate := connections.SQLClient.Omit(clause.Associations).Create(&data).Error
 	if errCreate != nil {
-		logger.Warn(errCreate)
+		logger.Warn().Msg(errCreate.Error())
 		time.Sleep(time.Second * time.Duration(attempt*5))
 		create(logger, attempt+1, data)
 		return

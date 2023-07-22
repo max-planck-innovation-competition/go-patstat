@@ -8,5 +8,5 @@ import (
 func TestUninstall(t *testing.T) {
 	t.Log("Test Install")
 	env.LoadEnvFiles()
-	Uninstall()
+	Uninstall("patstat_test")
 }

@@ -17,6 +17,11 @@ Under development
 
 **⚠️ Experimental - Not ready for production.**
 
+Tested with:
+* Fall 2019
+* Spring 2023
+
+
 ## Author
 
 Sebastian Erhardt

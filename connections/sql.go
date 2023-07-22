@@ -2,7 +2,7 @@ package connections
 
 import (
 	"github.com/SbstnErhrdt/go-gorm-all-sql/pkg/sql"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"os"
@@ -17,23 +17,21 @@ var SQLClient *gorm.DB
 
 // ConnectToSQL inits a sql client
 func ConnectToSQL() {
-	log.Println("Try to connect to sql database")
+	log.Info().Msg("Try to connect to sql database")
 	client, err := sql.ConnectToDatabase()
 	if err != nil {
-		log.Error("Failed to connected to sql database")
-		log.Panic(err)
+		log.Err(err).Msg("Failed to connected to sql database")
 		return
 	}
 	SQLClient = client
 	db, err := SQLClient.DB()
 	if err != nil {
-		log.Error("Failed to get to sql db client")
-		log.Panic(err)
+		log.Err(err).Msg("Failed to get to sql db client")
 		return
 	}
-	db.SetConnMaxLifetime(time.Minute * 20) // needs to be long enough for the whole request
-	db.SetConnMaxIdleTime(time.Minute * 20) // needs to be long enough for the whole request
-	log.Info("Successfully connected to sql database")
+	db.SetConnMaxLifetime(time.Minute * 40) // needs to be long enough for the whole request
+	db.SetConnMaxIdleTime(time.Minute * 40) // needs to be long enough for the whole request
+	log.Info().Msg("Successfully connected to sql database")
 	if strings.ToUpper(os.Getenv("ENVIRONMENT")) != "PRODUCTION" {
 		SQLClient.Config.Logger = logger.Default.LogMode(logger.Info)
 	}
@@ -42,18 +40,16 @@ func ConnectToSQL() {
 
 // CloseSqlConnection closes a sql client
 func CloseSqlConnection() {
-	log.Println("Try to close connection to sql database")
+	log.Info().Msg("Try to close connection to sql database")
 	db, err := SQLClient.DB()
 	if err != nil {
-		log.Error("Failed to get sql db")
-		log.Panic(err)
+		log.Err(err).Msg("Failed to get sql db")
 		return
 	}
 	err = db.Close()
 	if err != nil {
-		log.Error("Failed to close connection")
-		log.Panic(err)
+		log.Err(err).Msg("Failed to close connection")
 		return
 	}
-	log.Info("Successfully closed connection")
+	log.Info().Msg("Successfully closed connection")
 }
