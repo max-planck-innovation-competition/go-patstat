@@ -83,6 +83,9 @@ func File2Table(filePath string) (tableName string, err error) {
 	case "tls225":
 		obj := models.Tls225DocdbFamCpc{}
 		return obj.TableName(), nil
+	case "tls226":
+		obj := models.Tls226PersonOrig{}
+		return obj.TableName(), nil
 	case "tls227":
 		obj := models.Tls227PersPubln{}
 		return obj.TableName(), nil

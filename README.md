@@ -49,8 +49,9 @@ go get -u github.com/max-planck-innovation-competition/go-patstat
 3) Move Patstat Data to Database Folder
 4) Unzip Patstat Data
 ```shell
+# unzip part files 
 unzip *.zip
-# wait for unzip of first files
+# unzip tls files
 unzip tls*.zip
 ```
 5) Create `.env` file with following content

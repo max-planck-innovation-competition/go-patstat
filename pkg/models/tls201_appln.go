@@ -92,7 +92,7 @@ type Tls201Appln struct {
 	PrioritiesApplications    []*Tls204ApplnPrior        `json:"prioritiesApplications" gorm:"foreignKey:prior_appln_id"`
 	TechRelations             []*Tls205TechRel           `json:"techRelations" gorm:"foreignKey:appln_id"`
 	TechRelationsApplications []*Tls205TechRel           `json:"techRelationsApplications" gorm:"foreignKey:tech_rel_appln_id"`
-	Persons                   []*Tls206Person            `json:"persons" gorm:"many2many:tls207_pers_appln;foreignKey:appln_id;joinForeignKey:person_id;"`
+	PersonApplications        []*Tls207PersAppln         `json:"personsApplications" gorm:"foreignKey:appln_id;"`
 	IpcClasses                []*Tls209ApplnIpc          `json:"ipcClasses" gorm:"foreignKey:appln_id"`
 	NationalClasses           []*Tls210ApplnNCls         `json:"nationalClasses" gorm:"foreignKey:appln_id"`
 	Continuations             []*Tls216ApplnContn        `json:"continuations" gorm:"foreignKey:appln_id"`

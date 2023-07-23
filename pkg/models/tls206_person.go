@@ -50,6 +50,8 @@ type Tls206Person struct {
 	HanHarmonized    int    `csv:"han_harmonized" json:"hanHarmonized" gorm:"column:han_harmonized;type:integer;default:0;not null"`
 	// relations
 	// Unmodified *Tls226PersonOrig `csv:"-" json:"unmodified" gorm:"foreignKey:person_id;references:person_id;default:null"`
+	// Relations
+	PersonApplications []*Tls207PersAppln `json:"personsApplications" gorm:"foreignKey:person_id;"`
 }
 
 // TableName sets the sql table name for this struct type
