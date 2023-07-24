@@ -41,7 +41,6 @@ type Tls211PatPubln struct {
 	PublnClaims     int       `json:"publnClaims" gorm:"column:publn_claims;type:integer;default:0;not null"`
 	// relations
 	Application *Tls201Appln      `json:"application" gorm:"foreignKey:appln_id"`
-	Persons     []*Tls206Person   `json:"persons" gorm:"many2many:tls227_pers_publn;foreignKey:pat_publn_id;joinForeignKey:person_id;"`
 	Citations   []*Tls212Citation `json:"citations" gorm:"foreignKey:pat_publn_id"`
 	Cited       []*Tls212Citation `json:"cited" gorm:"foreignKey:cited_pat_publn_id"`
 }
