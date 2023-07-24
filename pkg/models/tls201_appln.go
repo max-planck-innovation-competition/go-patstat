@@ -95,6 +95,7 @@ type Tls201Appln struct {
 	PersonApplications        []*Tls207PersAppln         `json:"personsApplications" gorm:"foreignKey:appln_id;"`
 	IpcClasses                []*Tls209ApplnIpc          `json:"ipcClasses" gorm:"foreignKey:appln_id"`
 	NationalClasses           []*Tls210ApplnNCls         `json:"nationalClasses" gorm:"foreignKey:appln_id"`
+	Publications              []*Tls211PatPubln          `json:"publications" gorm:"foreignKey:appln_id"`
 	Continuations             []*Tls216ApplnContn        `json:"continuations" gorm:"foreignKey:appln_id"`
 	ParentContinuations       []*Tls216ApplnContn        `json:"parentContinuations" gorm:"foreignKey:parent_appln_id"`
 	Citations                 []*Tls212Citation          `json:"citations" gorm:"foreignKey:cited_appln_id"`
