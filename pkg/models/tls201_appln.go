@@ -66,6 +66,7 @@ type Tls201Appln struct {
 	ApplnFilingDate    time.Time `json:"applnFilingDate" gorm:"column:appln_filing_date;type:date;default:'9999-12-31';not null"`
 	ApplnFilingYear    int       `json:"applnFilingYear" gorm:"column:appln_filing_year;type:smallint;default:9999;not null"`
 	ApplnNrOriginal    string    `json:"applnNrOriginal" gorm:"column:appln_nr_original;type:varchar(100);default:'';not null"`
+	ApplnNrEpoDoc      string    `json:"applnNrEpodoc" gorm:"column:appln_nr_epodoc;type:varchar(100);default:'';not null"` // patstat autum 2023
 	IprType            string    `json:"iprType" gorm:"column:ipr_type;type:char(2);default:'';not null"`
 	ReceivingOffice    string    `json:"receivingOffice" gorm:"column:receiving_office;type:char(2);default:'';not null"`
 	InternatApplnId    int       `json:"internatApplnId" gorm:"column:internat_appln_id;type:integer;default:0;not null"`

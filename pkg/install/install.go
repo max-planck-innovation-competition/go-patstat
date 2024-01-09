@@ -81,37 +81,39 @@ func CreateTables() {
 	return
 }
 
+var Models = []interface{}{
+	&models.Tls904Nuts{},
+	&models.Tls902IpcNace2{},
+	&models.Tls901TechnFieldIpc{},
+	&models.Tls803LegalEventCode{},
+	&models.Tls801Country{},
+	&models.Tls231InpadocLegalEvent{},
+	&models.Tls230ApplnTechnField{},
+	&models.Tls229ApplnNace2{},
+	&models.Tls228DocdbFamCitn{},
+	&models.Tls227PersPubln{},
+	&models.Tls226PersonOrig{},
+	&models.Tls225DocdbFamCpc{},
+	&models.Tls224ApplnCpc{},
+	&models.Tls222ApplnJpClass{},
+	&models.Tls216ApplnContn{},
+	&models.Tls215CitnCateg{},
+	&models.Tls214NplPubln{},
+	&models.Tls212Citation{},
+	&models.Tls211PatPubln{},
+	&models.Tls210ApplnNCls{},
+	&models.Tls209ApplnIpc{},
+	&models.Tls207PersAppln{},
+	&models.Tls206Person{},
+	&models.Tls205TechRel{},
+	&models.Tls204ApplnPrior{},
+	&models.Tls203ApplnAbstr{},
+	&models.Tls202ApplnTitle{},
+	&models.Tls201Appln{},
+}
+
 func migrateTables() (err error) {
 	// all migrateTables
-	err = connections.SQLClient.AutoMigrate(
-		&models.Tls904Nuts{},
-		&models.Tls902IpcNace2{},
-		&models.Tls901TechnFieldIpc{},
-		&models.Tls803LegalEventCode{},
-		&models.Tls801Country{},
-		&models.Tls231InpadocLegalEvent{},
-		&models.Tls230ApplnTechnField{},
-		&models.Tls229ApplnNace2{},
-		&models.Tls228DocdbFamCitn{},
-		&models.Tls227PersPubln{},
-		&models.Tls226PersonOrig{},
-		&models.Tls225DocdbFamCpc{},
-		&models.Tls224ApplnCpc{},
-		&models.Tls222ApplnJpClass{},
-		&models.Tls216ApplnContn{},
-		&models.Tls215CitnCateg{},
-		&models.Tls214NplPubln{},
-		&models.Tls212Citation{},
-		&models.Tls211PatPubln{},
-		&models.Tls210ApplnNCls{},
-		&models.Tls209ApplnIpc{},
-		&models.Tls207PersAppln{},
-		&models.Tls206Person{},
-		&models.Tls205TechRel{},
-		&models.Tls204ApplnPrior{},
-		&models.Tls203ApplnAbstr{},
-		&models.Tls202ApplnTitle{},
-		&models.Tls201Appln{},
-	)
+	err = connections.SQLClient.AutoMigrate(Models...)
 	return
 }

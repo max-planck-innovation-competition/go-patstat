@@ -3,7 +3,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/max-planck-innovation-competition/go-patstat)](https://goreportcard.com/report/github.com/max-planck-innovation-competition/go-patstat)
 [![Go Reference](https://pkg.go.dev/badge/github.com/max-planck-innovation-competition/go-patstat.svg)](https://pkg.go.dev/github.com/max-planck-innovation-competition/go-patstat)
 
-Updated to Patstat Version Spring 2023
+Updated to Patstat Version Fall 2023
 
 This repository generates the PATSTAT Database using Object Relational Mapping (ORM) and Docker.
 
@@ -79,5 +79,5 @@ SQL_TYPE=POSTGRES
 6) Run Patstat installation Script
 
 ```shell
-./patstat install --db=patstat_2023_spring --directory=./ --post
+./patstat --mode=install --db=patstat_2023_fall --directory=./ 
 ```

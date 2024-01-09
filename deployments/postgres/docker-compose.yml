@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: ${SQL_PASSWORD:-changeme}
       PGDATA: /data/postgres
     volumes:
-      - ./data:/data/postgres
+      - ./data:/var/lib/postgresql/data
       - ./ingest:/ingest
     ports:
       - "5432:5432"
