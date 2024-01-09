@@ -3,30 +3,28 @@ package install
 import (
 	"fmt"
 	"github.com/max-planck-innovation-competition/go-patstat/connections"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 // Uninstall deletes all migrateTables and data from the database
-func Uninstall() (err error) {
-	log.Println("Start De installation")
+func Uninstall(dbName string) {
+	log.Info().Str("dbName", dbName).Msg("Start uninstall installation")
 	connections.ConnectToSQL()
 
 	// check if db exists
-	exists, err := checkIfDBExists()
+	exists, err := checkIfDBExists(dbName)
 	if err != nil {
-		log.Panic(err)
+		log.Panic().Msg(err.Error())
 		return
 	}
 
 	if exists {
-
-		stmt := fmt.Sprintf("DROP DATABASE '%s' WITH (FORCE);", PatstatDatabaseName)
+		stmt := fmt.Sprintf("DROP DATABASE %s WITH (FORCE);", dbName)
 		if rs := connections.SQLClient.Exec(stmt); rs.Error != nil {
-			log.Panic(rs.Error)
+			log.Panic().Msg(rs.Error.Error())
 			err = rs.Error
 			return
 		}
 		return
 	}
-	return nil
 }

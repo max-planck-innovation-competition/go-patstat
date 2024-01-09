@@ -39,7 +39,7 @@ CREATE TABLE tls226_person_orig (
 // Each row has one corresponding row in TLS206_PERSON. In these tables the data has
 // been cleaned and unified and its table structure has been simplified and normalised.
 type Tls226PersonOrig struct {
-	PersonOrigID      int    `csv:"column" json:"personOrigId" gorm:"primaryKey;column:person_orig_id;type:integer;default:0;not null"`
+	PersonOrigID      int    `csv:"column" json:"personOrigId" gorm:"primaryKey;column:person_orig_id;type:integer;not null"`
 	PersonID          int    `csv:"person_id" json:"personId" gorm:"column:person_id;type:integer;default:0;not null"`
 	Source            string `csv:"source" json:"source" gorm:"column:source;type:char(5);default:'';not null"`
 	SourceVersion     string `csv:"source_version" json:"sourceVersion" gorm:"column:source_version;type:varchar(10);default:'';not null"`

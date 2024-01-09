@@ -52,12 +52,12 @@ CREATE TABLE tls231_inpadoc_legal_event (
 // withdrawal of the application, patent applications entering the national phase, patents which
 // have been opposed or revoked, etc.
 type Tls231InpadocLegalEvent struct {
-	EventID             int       `json:"eventId" gorm:"primaryKey;column:event_id;type:integer;default:0;not null"`
-	ApplnID             int       `json:"applnId" gorm:"column:appln_id;type:integer;default:0;not null"`
-	EventSeqNr          int16     `json:"eventSeqNr" gorm:"column:event_seq_nr;type:smallint;default:0;"`
-	EventType           string    `json:"eventType" gorm:"column:event_type;type:char(3);default:'';"`
-	EventAuth           string    `json:"eventAuth" gorm:"column:event_auth;type:char(2);default:'';"`
-	EventCode           string    `json:"eventCode" gorm:"column:event_code;type:varchar(4);"`
+	EventID             int       `json:"eventId" gorm:"primaryKey;column:event_id;type:integer;not null;"`
+	ApplnID             int       `json:"applnId" gorm:"column:appln_id;type:integer;default:0;not null;"`
+	EventSeqNr          int16     `json:"eventSeqNr" gorm:"column:event_seq_nr;type:smallint;default:0;not null;"`
+	EventType           string    `json:"eventType" gorm:"column:event_type;type:char(3);default:'';not null;"`
+	EventAuth           string    `json:"eventAuth" gorm:"column:event_auth;type:char(2);default:'';not null;"`
+	EventCode           string    `json:"eventCode" gorm:"column:event_code;type:varchar(4);default:'';not null;"`
 	EventFilingDate     time.Time `json:"eventFilingDate" gorm:"column:event_filing_date;type:date;default:'9999-12-31';not null"`
 	EventPublnDate      time.Time `json:"eventPublnDate" gorm:"column:event_publn_date;type:date;default:'9999-12-31';not null"`
 	EventEffectiveDate  time.Time `json:"eventEffectiveDate" gorm:"column:event_effective_date;type:date;default:'9999-12-31';not null"`
@@ -91,7 +91,7 @@ type Tls231InpadocLegalEvent struct {
 	ClassScheme         string    `json:"classScheme" gorm:"column:class_scheme;type:varchar(4);default:'';"`
 	ClassSymbol         string    `json:"classSymbol" gorm:"column:class_symbol;type:varchar(50);default:'';"`
 	// relations
-	LegalEventCode *Tls803LegalEventCode `json:"legalEventCode" gorm:"foreignKey:event_code,event_auth"`
+	//LegalEventCode *Tls803LegalEventCode `json:"legalEventCode" gorm:"foreignKey:event_auth,event_code;"`
 }
 
 // TableName sets the sql table name for this struct type

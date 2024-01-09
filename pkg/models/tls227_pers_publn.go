@@ -13,12 +13,12 @@ CREATE TABLE tls227_pers_publn (
 // This table links each publication to its applicants and inventors. This can be used to analyse
 // the changes of applicants / inventors at the times of their publication.
 type Tls227PersPubln struct {
-	PersonID   int `json:"personId" gorm:"primaryKey;column:person_id;type:integer;default:0;not null"`
+	PersonID   int `json:"personId" gorm:"primaryKey;column:person_id;type:integer;not null"`
 	PatPublnID int `json:"patPublnId" gorm:"primaryKey;column:pat_publn_id;type:integer;default:0;not null"`
 	AppltSeqNr int `json:"appltSeqNr" gorm:"primaryKey;column:applt_seq_nr;type:integer;default:0;not null"`
 	InvtSeqNr  int `json:"invtSeqNr" gorm:"primaryKey;column:invt_seq_nr;type:integer;default:0;not null"`
 	// relations
-	Person *Tls206Person `json:"person" gorm:"foreignKey:person_id;"`
+	//Person *Tls206Person `json:"person" gorm:"foreignKey:person_id;"`
 }
 
 // TableName sets the sql table name for this struct type

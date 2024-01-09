@@ -3,7 +3,7 @@ package models
 /*
 CREATE TABLE tls801_country (
     ctry_code char(2) DEFAULT '' NOT NULL,
-    iso_alph3 varchar(3) DEFAULT '' NOT NULL,
+    iso_alpha3 varchar(3) DEFAULT '' NOT NULL,
     st3_name varchar(100) DEFAULT '' NOT NULL,
     organisation_flag char(1) DEFAULT '' NOT NULL,
     continent varchar(25) DEFAULT '' NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE tls801_country (
 // or the OECD. This table is based on WIPO standard ST.3.
 type Tls801Country struct {
 	CtryCode         string `json:"ctryCode" gorm:"primaryKey;column:ctry_code;type:char(2);default:'';not null"`
-	IsoAlph3         string `json:"isoAlph3" gorm:"column:iso_alph3;type:varchar(3);default:'';not null"`
+	IsoAlpha3        string `json:"isoAlpha3" gorm:"column:iso_alpha3;type:varchar(3);default:'';not null"`
 	St3Name          string `json:"st3Name" gorm:"column:st3_name;type:varchar(100);default:'';not null"`
 	OrganisationFlag string `json:"organisationFlag" gorm:"column:organisation_flag;type:char(1);default:'';not null"`
 	Continent        string `json:"continent" gorm:"column:continent;type:varchar(25);default:'';not null"`

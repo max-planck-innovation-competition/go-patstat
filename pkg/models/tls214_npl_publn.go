@@ -32,7 +32,7 @@ CREATE TABLE tls214_npl_publn (
 // information is available as an unstructured string. In addition and to the degree possible,
 // the information has been split up into multiple attributes.
 type Tls214NplPubln struct {
-	NplPublnID           string `json:"nplPublnId" gorm:"primaryKey;column:npl_publn_id;type:varchar(32);'default:'0';not null"`
+	NplPublnID           string `json:"nplPublnId" gorm:"primaryKey;column:npl_publn_id;type:varchar(32);not null"`
 	XpNr                 int    `json:"xpNr" gorm:"column:xp_nr;type:integer;default:0;not null"`
 	NplType              string `json:"nplType" gorm:"column:npl_type;type:char(1);default:'';not null"`
 	NplBiblio            string `json:"nplBiblio" gorm:"column:npl_biblio;type:text;default:'';not null"`

@@ -23,7 +23,7 @@ CREATE TABLE tls222_appln_jp_class (
 // and an explanation for each classification:
 // https://www5.j-platpat.inpit.go.jp/pms/tokujitsu/pmgs_en/PMGS_EN_GM101_Top.action
 type Tls222ApplnJpClass struct {
-	ApplnID       int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;default:0;not null"`
+	ApplnID       int    `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;not null"`
 	JpClassScheme string `json:"jpClassScheme" gorm:"primaryKey;column:jp_class_scheme;type:varchar(5);default:'';not null"`
 	JpClassSymbol string `json:"jpClassSymbol" gorm:"primaryKey;column:jp_class_symbol;type:varchar(50);default:'';not null"`
 }
