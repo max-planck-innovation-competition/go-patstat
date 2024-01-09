@@ -1,3 +1,3 @@
 package install
 
-var dbName = "patstat"
+var PatstatDatabaseName = "patstat"

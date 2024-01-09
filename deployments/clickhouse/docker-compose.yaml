@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  patstat_clickhouse:
+    image: clickhouse/clickhouse-server
+    user: "101:101"
+    container_name: patstat_clickhouse
+    hostname: clickhouse
+    volumes:
+      - ./fs/volumes/clickhouse/etc/clickhouse-server/config.d/config.xml:/etc/clickhouse-server/config.d/config.xml
+      - ./fs/volumes/clickhouse/etc/clickhouse-server/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
+      - ./fs/volumes/clickhouse/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "127.0.0.1:8123:8123"
+      - "127.0.0.1:9000:9000"
+    depends_on:
+      - patstat_postgres
+  patstat_postgres:
+    container_name: patstat_postgres
+    hostname: postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: clickhouse_pg_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./fs/volumes/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./data:/data/postgres
+      - ./ingest:/ingest
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical" #required for MaterializedPostgreSQL

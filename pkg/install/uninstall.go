@@ -6,7 +6,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// Uninstall deletes all tables and data from the database
+// Uninstall deletes all migrateTables and data from the database
 func Uninstall() (err error) {
 	log.Println("Start De installation")
 	connections.ConnectToSQL()
@@ -19,7 +19,8 @@ func Uninstall() (err error) {
 	}
 
 	if exists {
-		stmt := fmt.Sprintf("DROP DATABASE %s WITH (FORCE);", dbName)
+
+		stmt := fmt.Sprintf("DROP DATABASE '%s' WITH (FORCE);", PatstatDatabaseName)
 		if rs := connections.SQLClient.Exec(stmt); rs.Error != nil {
 			log.Panic(rs.Error)
 			err = rs.Error

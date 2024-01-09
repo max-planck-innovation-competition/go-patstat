@@ -5,11 +5,12 @@ import (
 	"github.com/max-planck-innovation-competition/go-patstat/connections"
 	"github.com/max-planck-innovation-competition/go-patstat/pkg/models"
 	log "github.com/sirupsen/logrus"
+	"log/slog"
 )
 
 func checkIfDBExists() (exists bool, err error) {
 	// check if db exists
-	stmt := fmt.Sprintf("SELECT * FROM pg_database WHERE datname = '%s';", dbName)
+	stmt := fmt.Sprintf("SELECT * FROM pg_database WHERE datname = '%s';", PatstatDatabaseName)
 	rs := connections.SQLClient.Raw(stmt)
 	if rs.Error != nil {
 		log.Panic(rs.Error)
@@ -32,8 +33,8 @@ func checkIfDBExists() (exists bool, err error) {
 	return true, nil
 }
 
-// Install creates all tables in the database
-func Install() {
+// Install creates all migrateTables in the database
+func Install() (err error) {
 	log.Println("Start Installation")
 	connections.ConnectToSQL()
 
@@ -46,24 +47,16 @@ func Install() {
 
 	// if not create it
 	if !exists {
-		stmt := fmt.Sprintf("CREATE DATABASE %s;", dbName)
+		stmt := fmt.Sprintf("CREATE DATABASE %s;", PatstatDatabaseName)
 		if rs := connections.SQLClient.Exec(stmt); rs.Error != nil {
 			log.Panic(rs.Error)
 			return
 		}
 	}
 
-	// create the tables
-	connections.SQLClient.Config.DisableForeignKeyConstraintWhenMigrating = true
-	err = tables()
-	if err != nil {
-		log.Panic(err)
-		return
-	}
-
-	// add constraints to the tables
+	// add constraints to the migrateTables
 	connections.SQLClient.Config.DisableForeignKeyConstraintWhenMigrating = false
-	err = tables()
+	err = migrateTables()
 	if err != nil {
 		log.Panic(err)
 		return
@@ -78,10 +71,24 @@ func Install() {
 		log.Panic(err)
 		return
 	}
+	return
 }
 
-func tables() (err error) {
-	// all tables
+func CreateTables() (err error) {
+	// create the migrateTables
+	connections.SQLClient.Config.DisableForeignKeyConstraintWhenMigrating = true
+	err = migrateTables()
+	if err != nil {
+		slog.Error("error creating tables", err)
+		panic(err)
+		return
+	}
+	slog.Info("tables created")
+	return
+}
+
+func migrateTables() (err error) {
+	// all migrateTables
 	err = connections.SQLClient.AutoMigrate(
 		&models.Tls904Nuts{},
 		&models.Tls902IpcNace2{},

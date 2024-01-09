@@ -8,5 +8,9 @@ import (
 func TestUninstall(t *testing.T) {
 	t.Log("Test Install")
 	env.LoadEnvFiles()
-	Uninstall()
+	err := Uninstall()
+	if err != nil {
+		t.Error(err)
+		return
+	}
 }
