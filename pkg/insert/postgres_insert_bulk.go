@@ -51,7 +51,7 @@ func BulkReadDirectory(dirPath, postGresPath string) (files []string, err error)
 	}
 	if len(files) == 0 {
 		err = ErrNoFilesFound
-		log.Err(err).Msg("no files found")
+		log.Err(err).Str("path", dirPath).Msg("no files found")
 	}
 	return
 }

@@ -27,8 +27,8 @@ services:
       - "5432:5432"
     volumes:
       - ./fs/volumes/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-      - ./data:/var/lib/postgresql/data
-      - ./ingest:/ingest
+      - /media/oem/Volume/patstat_2023_autumn:/ingest
+      - /media/oem/Volume/clickhouse_deployment/postgres_volume:/var/lib/postgresql/data
     command:
       - "postgres"
       - "-c"
