@@ -35,7 +35,10 @@ func main() {
 		installMode(*DefaultDbName, *DefaultDirectoryPath, *DefaultPostgresDirectoryPath)
 		break
 	case "uninstall":
-		uninstallMode(*DefaultDbName, *DefaultDirectoryPath, *DefaultPostgresDirectoryPath)
+		uninstallMode(*DefaultDbName)
+		break
+	case "add-constraints":
+		addConstraintsMode()
 		break
 	case "insert":
 		insertMode(*DefaultDbName, *DefaultDirectoryPath, *DefaultPostgresDirectoryPath)
@@ -77,16 +80,21 @@ func insertMode(DefaultDbName, DefaultDirectoryPath, DefaultPostgresDirectoryPat
 	log.Info().Msg("End Insertion")
 }
 
-func uninstallMode(DefaultDbName, DefaultDirectoryPath, DefaultPostgresDirectoryPath string) {
+func uninstallMode(DefaultDbName string) {
 	log.Info().
 		Str("db", DefaultDbName).
 		Msg("Start uninstall")
-	flag.StringVar(&DefaultDbName, "db", "patstat", "database name")
-	flag.Parse()
 	err := install.Uninstall(DefaultDbName)
 	if err != nil {
 		log.Err(err).Msg("error while uninstalling")
 		return
 	}
 	log.Info().Msg("End uninstall")
+}
+
+func addConstraintsMode() {
+	log.Info().
+		Msg("Start add constraints")
+	install.CreateTableConstraints()
+	log.Info().Msg("End add constraints")
 }
