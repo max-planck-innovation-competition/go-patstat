@@ -27,7 +27,7 @@ CREATE TABLE tls201_appln (
     earliest_publn_year smallint DEFAULT 9999 NOT NULL,
     earliest_pat_publn_id integer DEFAULT 0 NOT NULL,
     granted char(1) DEFAULT 'N' NOT NULL,
-    doc_db_family_id integer DEFAULT 0 NOT NULL,
+    docdb_family_id integer DEFAULT 0 NOT NULL,
     inpadoc_family_id integer DEFAULT 0 NOT NULL,
     docdb_family_size smallint DEFAULT 0 NOT NULL,
     nb_citing_docdb_fam smallint DEFAULT 0 NOT NULL,
@@ -66,6 +66,7 @@ type Tls201Appln struct {
 	ApplnFilingDate    time.Time `json:"applnFilingDate" gorm:"column:appln_filing_date;type:date;default:'9999-12-31';not null"`
 	ApplnFilingYear    int       `json:"applnFilingYear" gorm:"column:appln_filing_year;type:smallint;default:9999;not null"`
 	ApplnNrOriginal    string    `json:"applnNrOriginal" gorm:"column:appln_nr_original;type:varchar(100);default:'';not null"`
+	ApplnNrEpoDoc      string    `json:"applnNrEpodoc" gorm:"column:appln_nr_epodoc;type:varchar(100);default:'';not null"` // patstat autum 2023
 	IprType            string    `json:"iprType" gorm:"column:ipr_type;type:char(2);default:'';not null"`
 	ReceivingOffice    string    `json:"receivingOffice" gorm:"column:receiving_office;type:char(2);default:'';not null"`
 	InternatApplnId    int       `json:"internatApplnId" gorm:"column:internat_appln_id;type:integer;default:0;not null"`
@@ -79,34 +80,34 @@ type Tls201Appln struct {
 	EarliestPublnYear  int       `json:"earliestPublnYear" gorm:"column:earliest_publn_year;type:smallint;default:9999;not null"`
 	EarliestPatPublnId int       `json:"earliestPatPublnId" gorm:"column:earliest_pat_publn_id;type:integer;default:0;not null"`
 	Granted            string    `json:"granted" gorm:"column:granted;type:char(1);default:'N';not null"`
-	DocDbFamilyId      int       `json:"docDbFamilyId" gorm:"column:doc_db_family_id;type:integer;default:0;not null"`
+	DocDbFamilyId      int       `json:"docDbFamilyId" gorm:"column:docdb_family_id;type:integer;default:0;not null"`
 	InpadocFamilyId    int       `json:"inpadocFamilyId" gorm:"column:inpadoc_family_id;type:integer;default:0;not null"`
 	DocdbFamilySize    int       `json:"docdbFamilySize" gorm:"column:docdb_family_size;type:smallint;default:0;not null"`
 	NbCitingDocdbFam   int       `json:"nbCitingDocdbFam" gorm:"column:nb_citing_docdb_fam;type:smallint;default:0;not null"`
 	NbApplicants       int       `json:"nbApplicants" gorm:"column:nb_applicants;type:smallint;default:0;not null"`
 	NbInventors        int       `json:"nbInventors" gorm:"column:nb_inventors;type:smallint;default:0;not null"`
 	// relations
-	Title                     *Tls202ApplnTitle          `json:"title" gorm:"foreignKey:appln_id"`
-	Abstract                  *Tls203ApplnAbstr          `json:"abstract" gorm:"foreignKey:appln_id"`
-	Priorities                []*Tls204ApplnPrior        `json:"priorities" gorm:"foreignKey:appln_id"`
-	PrioritiesApplications    []*Tls204ApplnPrior        `json:"prioritiesApplications" gorm:"foreignKey:prior_appln_id"`
-	TechRelations             []*Tls205TechRel           `json:"techRelations" gorm:"foreignKey:appln_id"`
-	TechRelationsApplications []*Tls205TechRel           `json:"techRelationsApplications" gorm:"foreignKey:tech_rel_appln_id"`
-	PersonApplications        []*Tls207PersAppln         `json:"personsApplications" gorm:"foreignKey:appln_id;"`
-	IpcClasses                []*Tls209ApplnIpc          `json:"ipcClasses" gorm:"foreignKey:appln_id"`
-	NationalClasses           []*Tls210ApplnNCls         `json:"nationalClasses" gorm:"foreignKey:appln_id"`
-	Publications              []*Tls211PatPubln          `json:"publications" gorm:"foreignKey:appln_id"`
-	Continuations             []*Tls216ApplnContn        `json:"continuations" gorm:"foreignKey:appln_id"`
-	ParentContinuations       []*Tls216ApplnContn        `json:"parentContinuations" gorm:"foreignKey:parent_appln_id"`
-	Citations                 []*Tls212Citation          `json:"citations" gorm:"foreignKey:cited_appln_id"`
-	FamilyCitations           []*Tls228DocdbFamCitn      `json:"familyCitations" gorm:"foreignKey:docdb_family_id"`
-	FamilyCited               []*Tls228DocdbFamCitn      `json:"familyCited" gorm:"foreignKey:cited_docdb_family_id"`
-	JpClasses                 []*Tls222ApplnJpClass      `json:"jpClasses" gorm:"foreignKey:appln_id"`
-	CpcClasses                []*Tls224ApplnCpc          `json:"cpcClasses" gorm:"foreignKey:appln_id"`
-	FamilyCpcClasses          []*Tls225DocdbFamCpc       `json:"familyCpcClasses" gorm:"foreignKey:docdb_family_id"`
-	NaceCodes                 []*Tls229ApplnNace2        `json:"naceCodes" gorm:"foreignKey:appln_id"`
-	TechnicalFields           []*Tls230ApplnTechnField   `json:"technicalFields" gorm:"foreignKey:appln_id"`
-	LegalEvents               []*Tls231InpadocLegalEvent `json:"legalEvents" gorm:"foreignKey:appln_id"`
+	//Title                     *Tls202ApplnTitle          `json:"title" gorm:"foreignKey:appln_id"`
+	//Abstract                  *Tls203ApplnAbstr          `json:"abstract" gorm:"foreignKey:appln_id"`
+	//Priorities                []*Tls204ApplnPrior        `json:"priorities" gorm:"foreignKey:appln_id"`
+	//PrioritiesApplications    []*Tls204ApplnPrior        `json:"prioritiesApplications" gorm:"foreignKey:prior_appln_id"`
+	//TechRelations             []*Tls205TechRel           `json:"techRelations" gorm:"foreignKey:appln_id"`
+	//TechRelationsApplications []*Tls205TechRel           `json:"techRelationsApplications" gorm:"foreignKey:tech_rel_appln_id"`
+	//PersonApplications        []*Tls207PersAppln         `json:"personsApplications" gorm:"foreignKey:appln_id;"`
+	//IpcClasses                []*Tls209ApplnIpc          `json:"ipcClasses" gorm:"foreignKey:appln_id"`
+	//NationalClasses           []*Tls210ApplnNCls         `json:"nationalClasses" gorm:"foreignKey:appln_id"`
+	//Publications              []*Tls211PatPubln          `json:"publications" gorm:"foreignKey:appln_id"`
+	//Continuations             []*Tls216ApplnContn        `json:"continuations" gorm:"foreignKey:appln_id"`
+	//ParentContinuations       []*Tls216ApplnContn        `json:"parentContinuations" gorm:"foreignKey:parent_appln_id"`
+	//Citations                 []*Tls212Citation          `json:"citations" gorm:"foreignKey:cited_appln_id"`
+	//FamilyCitations           []*Tls228DocdbFamCitn      `json:"familyCitations" gorm:"foreignKey:docdb_family_id"`
+	//FamilyCited               []*Tls228DocdbFamCitn      `json:"familyCited" gorm:"foreignKey:cited_docdb_family_id"`
+	//JpClasses                 []*Tls222ApplnJpClass      `json:"jpClasses" gorm:"foreignKey:appln_id"`
+	//CpcClasses                []*Tls224ApplnCpc          `json:"cpcClasses" gorm:"foreignKey:appln_id"`
+	//FamilyCpcClasses          []*Tls225DocdbFamCpc       `json:"familyCpcClasses" gorm:"foreignKey:docdb_family_id"`
+	//NaceCodes                 []*Tls229ApplnNace2        `json:"naceCodes" gorm:"foreignKey:appln_id"`
+	//TechnicalFields           []*Tls230ApplnTechnField   `json:"technicalFields" gorm:"foreignKey:appln_id"`
+	//LegalEvents               []*Tls231InpadocLegalEvent `json:"legalEvents" gorm:"foreignKey:appln_id"`
 	// Deprecated
 	// UsClasses                 []*Tls223ApplnDocus        `json:"usClasses" gorm:"foreignKey:appln_id"` // Deprecated
 	// ApplnNrEpodoc      string    `json:"applnNrEpodoc" gorm:"column:appln_nr_epodoc;type:varchar(20);default:'';not null"` // Deprecated

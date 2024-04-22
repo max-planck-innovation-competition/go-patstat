@@ -2,19 +2,30 @@ package insert
 
 import (
 	"github.com/max-planck-innovation-competition/go-patstat/connections"
+	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"os"
 	"path/filepath"
 )
 
+var ErrNoFilesFound = errors.New("no files found")
+
 func BulkReadDirectory(dirPath, postGresPath string) (files []string, err error) {
 	files = []string{}
+	// check if last character is a slash
+	if dirPath[len(dirPath)-1] != '/' {
+		dirPath = dirPath + "/"
+	}
 	// walk over the directory
 	err = filepath.Walk(dirPath,
 		func(path string, info os.FileInfo, err error) error {
 			if err != nil {
 				log.Err(err).Msg("error while walking over directory")
 				return err
+			}
+			// check if the path is the directory itself
+			if path == dirPath {
+				return nil
 			}
 			// skip child directories
 			if path != "." && info.IsDir() {
@@ -24,6 +35,8 @@ func BulkReadDirectory(dirPath, postGresPath string) (files []string, err error)
 			// check if the file is a csv
 			if filepath.Ext(path) == ".csv" {
 				log.Info().Str("file", path).Msg("found file")
+				// remove the directory path
+				path = path[len(dirPath):]
 				// add path prefix
 				path = filepath.Join(postGresPath, path)
 				// append to files
@@ -35,6 +48,10 @@ func BulkReadDirectory(dirPath, postGresPath string) (files []string, err error)
 		})
 	if err != nil {
 		log.Err(err).Msg("error while walking over directory")
+	}
+	if len(files) == 0 {
+		err = ErrNoFilesFound
+		log.Err(err).Str("path", dirPath).Msg("no files found")
 	}
 	return
 }
