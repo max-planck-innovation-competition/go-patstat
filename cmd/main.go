@@ -7,45 +7,41 @@ import (
 	"github.com/max-planck-innovation-competition/go-patstat/pkg/insert"
 	"github.com/max-planck-innovation-competition/go-patstat/pkg/install"
 	"github.com/rs/zerolog/log"
-	"os"
 )
 
 func init() {
 	env.LoadEnvFiles()
 }
 
-// DefaultDbName is the default database name
-var DefaultDbName = "patstat_2023_spring"
-
-// DefaultDirectoryPath is the default directory path of the data
-var DefaultDirectoryPath = "."
-
-var DefaultPostgresDirectoryPath = "/var/lib/postgresql/data/ingest/"
-
 func main() {
 	log.Debug().
 		Msg("Start Go Patstat script")
 
+	// load env files
+	env.LoadEnvFiles()
+
 	// check db connection
 	connections.ConnectToSQL()
 
-	// get first arg
-	args := os.Args
-	if len(args) < 2 {
-		return
-	}
-	// get the first arg
-	arg := args[1]
+	mode := flag.String("mode", "install", "the mode to run the script in (install, uninstall, insert)")
+	DefaultDbName := flag.String("db", "patstat", "database name")
+	DefaultDirectoryPath := flag.String("directory", ".", "the directory path to the data")
+	DefaultPostgresDirectoryPath := flag.String("postgres-directory", "/ingest", "the directory path to the data")
+	flag.Parse()
+
 	// switch on the arg
-	switch arg {
+	switch *mode {
 	case "install":
-		installMode()
+		installMode(*DefaultDbName, *DefaultDirectoryPath, *DefaultPostgresDirectoryPath)
 		break
 	case "uninstall":
-		uninstallMode()
+		uninstallMode(*DefaultDbName)
+		break
+	case "add-constraints":
+		addConstraintsMode()
 		break
 	case "insert":
-		insertMode()
+		insertMode(*DefaultDbName, *DefaultDirectoryPath, *DefaultPostgresDirectoryPath)
 	default:
 		log.Info().Msg("No mode selected")
 	}
@@ -55,17 +51,13 @@ func main() {
 	log.Info().Msg("End Go Patstat script")
 }
 
-func installMode() {
+func installMode(DefaultDbName, DefaultDirectoryPath, DefaultPostgresDirectoryPath string) {
 	// get flag db name
-	flag.StringVar(&DefaultDbName, "db", "patstat", "database name")
-	flag.StringVar(&DefaultDirectoryPath, "directory", ".", "the directory path to the data")
-	flag.StringVar(&DefaultPostgresDirectoryPath, "postgres-directory", "/var/lib/postgresql/data/ingest/", "the directory path to the data")
 	log.Info().
 		Str("db", DefaultDbName).
 		Str("directory", DefaultDirectoryPath).
 		Str("postgres-directory", DefaultPostgresDirectoryPath).
 		Msg("Start Installation")
-
 	// install
 	install.CreateDatabase(DefaultDbName)
 	install.CreateTables()
@@ -76,12 +68,8 @@ func installMode() {
 	log.Info().Msg("End Installation")
 }
 
-func insertMode() {
+func insertMode(DefaultDbName, DefaultDirectoryPath, DefaultPostgresDirectoryPath string) {
 	// get flag db name
-	flag.StringVar(&DefaultDbName, "db", "patstat_2023_spring", "database name")
-	flag.StringVar(&DefaultDirectoryPath, "directory", ".", "the directory path to the data")
-	flag.StringVar(&DefaultPostgresDirectoryPath, "postgres-directory", "/var/lib/postgresql/data/ingest/", "the directory path to the data")
-	flag.Parse()
 	log.Info().
 		Str("db", DefaultDbName).
 		Str("directory", DefaultDirectoryPath).
@@ -92,12 +80,21 @@ func insertMode() {
 	log.Info().Msg("End Insertion")
 }
 
-func uninstallMode() {
+func uninstallMode(DefaultDbName string) {
 	log.Info().
 		Str("db", DefaultDbName).
 		Msg("Start uninstall")
-	flag.StringVar(&DefaultDbName, "db", "patstat", "database name")
-	flag.Parse()
-	install.Uninstall(DefaultDbName)
+	err := install.Uninstall(DefaultDbName)
+	if err != nil {
+		log.Err(err).Msg("error while uninstalling")
+		return
+	}
 	log.Info().Msg("End uninstall")
+}
+
+func addConstraintsMode() {
+	log.Info().
+		Msg("Start add constraints")
+	install.CreateTableConstraints()
+	log.Info().Msg("End add constraints")
 }

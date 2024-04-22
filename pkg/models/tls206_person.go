@@ -51,7 +51,7 @@ type Tls206Person struct {
 	// relations
 	// Unmodified *Tls226PersonOrig `csv:"-" json:"unmodified" gorm:"foreignKey:person_id;references:person_id;default:null"`
 	// Relations
-	PersonApplications []*Tls207PersAppln `json:"personsApplications" gorm:"foreignKey:person_id;"`
+	//PersonApplications []*Tls207PersAppln `json:"personsApplications" gorm:"foreignKey:person_id;"`
 }
 
 // TableName sets the sql table name for this struct type
