@@ -63,9 +63,17 @@ SQL_PORT=5432
 SQL_DATABASE=patstat
 SQL_TYPE=POSTGRES
 ```
+6) Build the binary
+```shell
+echo BUILD BINARY
+export CGO_ENABLED=0
+export GOOS=linux
+export GOARCH=amd64
+go build -o patstat ./cmd/main.go
+```
 
-6) Run Patstat installation Script
+7) Run Patstat installation Script
 
 ```shell
-./patstat install --db=patstat_2023_spring --directory=./ --post
+./patstat install --db=patstat_2024_spring --directory=./ --postgres-directory=/var/lib/postgresql/data/ingest/
 ```
