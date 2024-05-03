@@ -3,8 +3,9 @@ package insert
 import (
 	"github.com/max-planck-innovation-competition/go-patstat/pkg/models"
 	"github.com/pkg/errors"
+	"log/slog"
+	"path/filepath"
 	"regexp"
-	"strings"
 )
 
 // RegexTls is the regexp for matching the prefix of a file name
@@ -19,11 +20,12 @@ var ErrorNoPrefix = errors.New("can not find a corresponding prefix")
 // File2Table is a map of filename to table name
 func File2Table(filePath string) (tableName string, err error) {
 	// extract the filename from the filepath
-	fileName := filePath[strings.LastIndex(filePath, "/")+1:]
+	fileName := filepath.Base(filePath)
 	// extract the prefix of the filename using the regexp
 	prefix := RegexTls.FindStringSubmatch(fileName)
 	// if no prefix is found, return an error
 	if len(prefix) == 0 {
+		slog.With("fileName", fileName).Error("no prefix found")
 		return "", ErrorNoPrefix
 	}
 	// based on the prefix, find the table name

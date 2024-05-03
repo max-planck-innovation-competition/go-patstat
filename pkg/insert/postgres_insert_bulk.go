@@ -10,10 +10,10 @@ import (
 
 var ErrNoFilesFound = errors.New("no files found")
 
-func BulkReadDirectory(dirPath, postGresPath string) (files []string, err error) {
+func BulkReadDirectory(dirPath, dbFolderPath string) (files []string, err error) {
 	files = []string{}
 	// check if last character is a slash
-	if dirPath[len(dirPath)-1] != '/' {
+	if len(dirPath) > 0 && dirPath[len(dirPath)-1] != '/' {
 		dirPath = dirPath + "/"
 	}
 	// walk over the directory
@@ -35,12 +35,12 @@ func BulkReadDirectory(dirPath, postGresPath string) (files []string, err error)
 			// check if the file is a csv
 			if filepath.Ext(path) == ".csv" {
 				log.Info().Str("file", path).Msg("found file")
-				// remove the directory path
-				path = path[len(dirPath):]
+				// get the filename
+				fileName := filepath.Base(path)
 				// add path prefix
-				path = filepath.Join(postGresPath, path)
+				dbFilepath := filepath.Join(dbFolderPath, fileName)
 				// append to files
-				files = append(files, path)
+				files = append(files, dbFilepath)
 			} else {
 				log.Info().Str("file", path).Msg("skipping file")
 			}
