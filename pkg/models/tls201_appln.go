@@ -59,14 +59,13 @@ CREATE TABLE tls201_appln (
 // Deprecated attributes removed
 // (APPLN_NR_EPODOC from table TLS201_APPLN, and EVENT_IMPACT from table TLS803_LEGAL_EVENT_CODE).
 type Tls201Appln struct {
-	// ApplnNrEpoDoc      string    `json:"applnNrEpodoc" gorm:"column:appln_nr_epodoc;type:varchar(100);default:'';not null"` // removed patstat spring 2024
-
 	ApplnId            int       `json:"applnId" gorm:"primaryKey;column:appln_id;type:integer;"`
 	ApplnAuth          string    `json:"applnAuth" gorm:"column:appln_auth;type:char(2);default:'';not null"`
 	ApplnNr            string    `json:"applnNr" gorm:"column:appln_nr;type:varchar(15);default:'';not null"`
 	ApplnKind          string    `json:"applnKind" gorm:"column:appln_kind;type:char(2);default:'';not null"`
 	ApplnFilingDate    time.Time `json:"applnFilingDate" gorm:"column:appln_filing_date;type:date;default:'9999-12-31';not null"`
 	ApplnFilingYear    int       `json:"applnFilingYear" gorm:"column:appln_filing_year;type:smallint;default:9999;not null"`
+	ApplnNrEpoDoc      string    `json:"applnNrEpodoc" gorm:"column:appln_nr_epodoc;type:varchar(100);default:'';not null"` // removed patstat and re-added
 	ApplnNrOriginal    string    `json:"applnNrOriginal" gorm:"column:appln_nr_original;type:varchar(100);default:'';not null"`
 	IprType            string    `json:"iprType" gorm:"column:ipr_type;type:char(2);default:'';not null"`
 	ReceivingOffice    string    `json:"receivingOffice" gorm:"column:receiving_office;type:char(2);default:'';not null"`
